@@ -1,4 +1,4 @@
-
+package es.unican.is2;
 
 /**
  * Excepcion utilizada para indicar errores en el acceso a BBDD

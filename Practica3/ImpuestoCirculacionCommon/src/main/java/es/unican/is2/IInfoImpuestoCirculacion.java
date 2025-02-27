@@ -1,7 +1,10 @@
 /**
- * Interfaz de negocio para consultar información sobre 
+ * Interfaz de negocio para consultar informaciï¿½n sobre 
  * contribuyentes y vehiculos
  */
+
+package es.unican.is2;
+
 public interface IInfoImpuestoCirculacion {
 	
 	/**

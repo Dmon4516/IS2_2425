@@ -1,6 +1,8 @@
 /**
  * Interfaz de negocio para gestionar contribuyentes
  */
+
+ package es.unican.is2;
 public interface IGestionContribuyentes {
 	
 	/**

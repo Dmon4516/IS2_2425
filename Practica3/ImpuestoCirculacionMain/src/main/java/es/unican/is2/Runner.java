@@ -1,5 +1,6 @@
+package es.unican.is2;
 /**
- * Clase principal que construye la aplicación de tres capas y lanza su ejecución
+ * Clase principal que construye la aplicaciï¿½n de tres capas y lanza su ejecuciï¿½n
  */
 public class Runner {
 
@@ -14,7 +15,7 @@ public class Runner {
 		// Componentes casa presentacion
 		VistaFuncionario vista = new VistaFuncionario(negocio);
 		
-		// Lanza ejecución
+		// Lanza ejecuciï¿½n
 		vista.setVisible(true);
 	}
 
