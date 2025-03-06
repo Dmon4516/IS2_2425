@@ -1,5 +1,4 @@
 package es.unican.is2;
-import es.unican.is2.ImpuestoCirculacionCommon;
 
 public class GestionImpuestoCirculacion {
     /**
