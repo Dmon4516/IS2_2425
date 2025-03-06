@@ -1,6 +1,7 @@
 package es.unican.is2;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * Clase abstracta que representa un vehiculo. 
@@ -15,9 +16,11 @@ public abstract class Vehiculo {
 	private LocalDate fechaMatriculacion;
 	private TipoMotor motor;
 
-	// TODO
 	public Vehiculo(long id, String matricula, LocalDate fechaMatriculacion, TipoMotor motor) {
-		// TODO
+		this.id = id;
+		this.matricula = matricula;
+		this.fechaMatriculacion = fechaMatriculacion;
+		this.motor = motor;
 	}
 
 	/**
@@ -48,7 +51,18 @@ public abstract class Vehiculo {
 		return id;
 	}
 
-	// TODO
 	public abstract double precioImpuesto();
 
+	public double bonificacion() {
+		Period anhosAntiguedad = Period.between(fechaMatriculacion, LocalDate.now());
+		if (anhosAntiguedad.getYears() >= 25) { // Vehiculos con mas de 25 anhos de antiguedad
+			return 1;
+		} else if (motor == TipoMotor.ELECTRICO || (anhosAntiguedad.getYears() <= 4 && motor == TipoMotor.HIBRIDO)) { // Vehiculos Electricos O Vehiculos Hibridos los primeros 4 anhos
+			return 0.75;
+		} else if (anhosAntiguedad.getYears() <= 1 && motor == TipoMotor.GAS) { // Vehiculos de Gas el primer anho
+			return 0.5;
+		} else { // Ninguna bonificacion
+			return 0;
+		}
+	}
 }
