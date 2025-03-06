@@ -1,6 +1,15 @@
 package es.unican.is2;
 
-public class GestionImpuestoCirculacion {
+public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGestionVehiculos, IGestionContribuyentes {
+
+	private IContribuyentesDAO cont;
+	private IVehiculosDAO vehic;
+
+	public GestionImpuestoCirculacion (IContribuyentesDAO cont, IVehiculosDAO vehic) {
+		this.cont = cont;
+		this.vehic = vehic;
+	}
+
     /**
 	 * Registra un nuevo contribuyente
 	 * @param c Contribuyente que desea registrar
