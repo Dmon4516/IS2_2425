@@ -19,8 +19,7 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
 	 * @throws DataAccessException Si hay error en el acceso a los datos
 	 */
 	public Contribuyente altaContribuyente(Contribuyente c) throws DataAccessException {
-		//TODO
-        return null;
+        return cont.creaContribuyente(c);
     }
 
     /**
@@ -33,8 +32,15 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
 	 * @throws DataAccessException Si hay error en el acceso a los datos
 	 */
 	public Contribuyente bajaContribuyente(String dni) throws OperacionNoValidaException, DataAccessException {
-        //TODO
-		return null;
+		try {
+			Contribuyente c = cont.eliminaContribuyente(dni);
+			return c;
+		} catch (DataAccessException e) {
+			if (!cont.contribuyente(dni).getVehiculos().isEmpty()) { // Mira si tiene vehiculos que lo referencian
+				throw new OperacionNoValidaException(new String("El contribuyente tiene vehiculos a su nombre"));
+			}
+			throw new DataAccessException();
+		}
     }
 
     /**
@@ -47,8 +53,8 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
 	 * @throws DataAccessException Si hay error en el acceso a los datos
 	 */
 	public Vehiculo altaVehiculo(Vehiculo v, String dni) throws OperacionNoValidaException, DataAccessException {
-        //TODO
-		return null;
+		//TODO: anhadir vehiculo a contribuyente
+		return vehic.creaVehiculo(v);
     }
 
     /**
@@ -62,7 +68,7 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
  	 * @throws DataAccessException Si hay un error en el acceso a los datos
 	 */
 	public Vehiculo bajaVehiculo(String matricula, String dni) throws OperacionNoValidaException, DataAccessException {
-        //TODO
+        //TODO: quitar vehiculo de contribuyente sin borrar contribuyente
 		return null;
     }
 
@@ -89,8 +95,7 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
 	 * @throws DataAccessException Si hay un error en el acceso a los datos
 	 */
 	public Vehiculo vehiculo(String matricula) throws DataAccessException {
-        //TODO
-		return null;
+		return vehic.vehiculoPorMatricula(matricula);
     }
 
     /**
@@ -101,7 +106,6 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
 	 * @throws DataAccessException Si hay un error en el acceso a los datos
 	 */
 	public Contribuyente contribuyente(String dni) throws DataAccessException {
-        //TODO
-		return null;
+		return cont.contribuyente(dni);
     }
 }

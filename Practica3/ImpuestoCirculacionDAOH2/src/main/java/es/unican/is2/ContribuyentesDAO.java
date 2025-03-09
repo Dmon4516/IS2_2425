@@ -84,14 +84,34 @@ public class ContribuyentesDAO implements IContribuyentesDAO {
 
 	@Override
 	public Contribuyente actualizaContribuyente(Contribuyente nuevo) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		String insertStatement = String.format(
+				"update Contribuyentes set nombre='%s', apellido1='%s', apellido2='%s' where dni='%s'",
+				nuevo.getNombre(),
+				nuevo.getApellido1(),
+				nuevo.getApellido2(),
+				nuevo.getDni());
+		H2ServerConnectionManager.executeSqlStatement(insertStatement);
+		return nuevo;
 	}
 
 	@Override
 	public Contribuyente eliminaContribuyente(String dni) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		Contribuyente result = null; 
+		Connection con = H2ServerConnectionManager.getConnection();
+		try {
+			Statement statement = con.createStatement();
+			String statementText = "delete from contribuyentes where dni = '"+ dni+"'";
+			ResultSet results = statement.executeQuery(statementText);
+			if (results.next()) {
+				result = ContribuyenteMapper.toContribuyente(results);
+			}
+			statement.close(); 
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			throw new DataAccessException();
+		}
+		return result;
 	}
 
 }

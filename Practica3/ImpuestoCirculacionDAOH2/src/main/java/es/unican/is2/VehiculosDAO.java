@@ -99,12 +99,48 @@ public class VehiculosDAO implements IVehiculosDAO {
 
 	
 	public Vehiculo eliminaVehiculo(String matricula) throws DataAccessException {
-		//TODO
-		return null;
+		Vehiculo result = null; 
+		Connection con = H2ServerConnectionManager.getConnection();
+		try {
+			Statement statement = con.createStatement();
+			String statementText = "delete from vehiculos where matricula = '"+ matricula+"'";
+			ResultSet results = statement.executeQuery(statementText);
+			if (results.next()) { 
+				result = VehiculoMapper.toVehiculo(results);
+			}
+			statement.close(); 
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			throw new DataAccessException();
+		}
+		return result;
 	}
 
 	public Vehiculo actualizaVehiculo(Vehiculo nuevo) throws DataAccessException {
-		//TODO
-		return null;
+		String insertStatement= null;
+		if (nuevo instanceof Turismo) {
+			Turismo t = (Turismo) nuevo;
+			insertStatement = String.format(
+				"update Vehiculos set type='%s', matricula='%s', fechaMatricula='%s', motor='%s', potencia=%d where %ld",
+				t.getClass().getSimpleName(),
+				t.getMatricula(),
+				t.getFechaMatriculacion().toString(),
+				t.getMotor().toString(),
+				t.getPotencia(),
+				t.getId());
+		} else if (nuevo instanceof Motocicleta) {
+			Motocicleta m = (Motocicleta) nuevo;
+			insertStatement = String.format(
+				"update Vehiculos set type='%s', matricula='%s', fechaMatricula='%s', motor='%s', cilindrada=%i where %ld",
+				m.getClass().getSimpleName(),
+				m.getMatricula(),
+				m.getFechaMatriculacion().toString(),
+				m.getMotor().toString(),
+				m.getCilindrada(),
+				m.getId());
+		}
+		H2ServerConnectionManager.executeSqlStatement(insertStatement);
+		return nuevo;
 	}
 }
