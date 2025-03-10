@@ -53,7 +53,21 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
 	 * @throws DataAccessException Si hay error en el acceso a los datos
 	 */
 	public Vehiculo altaVehiculo(Vehiculo v, String dni) throws OperacionNoValidaException, DataAccessException {
-		//TODO: anhadir vehiculo a contribuyente
+
+		Contribuyente c = cont.contribuyente(dni);
+		if (c != null) {
+			if (vehic.vehiculoPorMatricula(v.getMatricula()) == null) {
+				vehic.creaVehiculo(v);
+				c.getVehiculos().add(v);
+				return v;
+			} else {
+				throw new OperacionNoValidaException(new String("Ya existe un vehiculo con la misma matricula"));
+			}
+		}
+		return null;
+	}
+
+	/**
 		return vehic.creaVehiculo(v);
     }
 
@@ -68,7 +82,16 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
  	 * @throws DataAccessException Si hay un error en el acceso a los datos
 	 */
 	public Vehiculo bajaVehiculo(String matricula, String dni) throws OperacionNoValidaException, DataAccessException {
-        //TODO: quitar vehiculo de contribuyente sin borrar contribuyente
+
+		Vehiculo v = vehic.vehiculoPorMatricula(matricula);
+		if (v != null) {
+			if (cont.contribuyente(dni).getVehiculos().contains(v)) {
+				vehic.eliminaVehiculo(matricula);
+				return v;
+			} else {
+				throw new OperacionNoValidaException(new String("El vehiculo no pertenece al contribuyente"));
+			}
+		}
 		return null;
     }
 
@@ -83,7 +106,19 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
 	 * @throws DataAccessException Si hay error en el acceso a los datos
 	 */
 	public boolean cambiaTitularVehiculo(String matricula, String dniActual, String dniNuevo) throws OperacionNoValidaException, DataAccessException {
-        //TODO
+
+		Vehiculo v = vehic.vehiculoPorMatricula(matricula);
+		Contribuyente cActual = cont.contribuyente(dniActual);
+		Contribuyente cNuevo = cont.contribuyente(dniNuevo);
+		if (v != null && cActual != null && cNuevo != null) {
+			if (cActual.getVehiculos().contains(v)) {
+				cActual.getVehiculos().remove(v);
+				cNuevo.getVehiculos().add(v);
+				return true;
+			} else {
+				throw new OperacionNoValidaException(new String("El vehiculo no pertenece al contribuyente"));
+			}
+		}
 		return false;
     }
 
