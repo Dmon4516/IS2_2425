@@ -19,7 +19,12 @@ public class GestionImpuestoCirculacion implements IInfoImpuestoCirculacion, IGe
 	 * @throws DataAccessException Si hay error en el acceso a los datos
 	 */
 	public Contribuyente altaContribuyente(Contribuyente c) throws DataAccessException {
-        return cont.creaContribuyente(c);
+		Contribuyente cAux = cont.contribuyente(c.getDni());
+		if (cAux == null) {
+			cont.creaContribuyente(c);
+			return c;
+		}
+		return null;
     }
 
     /**
