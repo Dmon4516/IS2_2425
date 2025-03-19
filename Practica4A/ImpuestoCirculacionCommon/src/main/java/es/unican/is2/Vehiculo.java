@@ -55,11 +55,11 @@ public abstract class Vehiculo {
 
 	public double bonificacion() {
 		Period anhosAntiguedad = Period.between(fechaMatriculacion, LocalDate.now());
-		if (anhosAntiguedad.getYears() >= 25) { // Vehiculos con mas de 25 anhos de antiguedad
+		if (anhosAntiguedad.getYears() > 25) { // Vehiculos con mas de 25 anhos de antiguedad
 			return 1;
-		} else if (motor == TipoMotor.ELECTRICO || (anhosAntiguedad.getYears() <= 4 && motor == TipoMotor.HIBRIDO)) { // Vehiculos Electricos O Vehiculos Hibridos los primeros 4 anhos
+		} else if (motor == TipoMotor.ELECTRICO || (anhosAntiguedad.getYears() < 4 && motor == TipoMotor.HIBRIDO)) { // Vehiculos Electricos O Vehiculos Hibridos los primeros 4 anhos
 			return 0.75;
-		} else if (anhosAntiguedad.getYears() <= 1 && motor == TipoMotor.GAS) { // Vehiculos de Gas el primer anho
+		} else if (anhosAntiguedad.getYears() < 1 && motor == TipoMotor.GAS) { // Vehiculos de Gas el primer anho
 			return 0.5;
 		} else { // Ninguna bonificacion
 			return 0;
