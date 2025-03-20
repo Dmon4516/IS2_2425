@@ -1,12 +1,12 @@
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\Contribuyente.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\DataAccessException.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\IContribuyentesDAO.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\IGestionContribuyentes.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\IGestionVehiculos.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\IInfoImpuestoCirculacion.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\IVehiculosDAO.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\Motocicleta.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\OperacionNoValidaException.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\TipoMotor.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\Turismo.java
-C:\Users\ÓSCAR\Downloads\Practicas ISO2\Practica3\ImpuestoCirculacionCommon\src\main\java\es\unican\is2\Vehiculo.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/Contribuyente.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/DataAccessException.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/IContribuyentesDAO.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/IGestionContribuyentes.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/IGestionVehiculos.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/IInfoImpuestoCirculacion.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/IVehiculosDAO.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/Motocicleta.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/OperacionNoValidaException.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/TipoMotor.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/Turismo.java
+/Users/David/Code/Unican/Curso_2/Semestre_2/OC/IS2_2425/Practica4A/ImpuestoCirculacionCommon/src/main/java/es/unican/is2/Vehiculo.java
