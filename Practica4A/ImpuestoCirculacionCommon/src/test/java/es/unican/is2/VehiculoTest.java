@@ -1,6 +1,7 @@
-package test;
+package es.unican.is2;
 
-import java.beans.Transient;
+import org.junit.*;
+import static org.junit.Assert.*;
 import java.time.LocalDate;
 
 public class VehiculoTest {
@@ -11,24 +12,24 @@ public class VehiculoTest {
     private Vehiculo veh5; //Gas de 1 anho, Bonificacion 0
     private Vehiculo veh6; //Gas de menos de 1 anho, Bonificacion 0.5
 
-    @BeforeEach
+    @Before
     public void setUp() throws Exception {
-        veh1 = new Vehiculo(1, "3547NXB", LocalDate.now().minusYears(26), TipoMotor.ELECTRICO);
-        veh2 = new Vehiculo(2, "3548NXB", LocalDate.now().minusYears(25), TipoMotor.ELECTRICO);
-        veh3 = new Vehiculo(3, "3549NXB", LocalDate.now().minusMonths(6), TipoMotor.HIBRIDO);
-        veh4 = new Vehiculo(4, "3550NXB", LocalDate.now().minusYears(3), TipoMotor.HIBRIDO);
-        veh5 = new Vehiculo(5, "3551NXB", LocalDate.now().minusYears(1), TipoMotor.GAS);
-        veh6 = new Vehiculo(6, "3552NXB", LocalDate.now().minusMonths(6), TipoMotor.GAS);
+        veh1 = new Turismo(1, "3547NXB", LocalDate.now().minusYears(26), TipoMotor.ELECTRICO, 0.0);
+        veh2 = new Turismo(2, "3548NXB", LocalDate.now().minusYears(25), TipoMotor.ELECTRICO, 0.0);
+        veh3 = new Turismo(3, "3549NXB", LocalDate.now().minusMonths(6), TipoMotor.HIBRIDO, 0.0);
+        veh4 = new Turismo(4, "3550NXB", LocalDate.now().minusYears(4), TipoMotor.HIBRIDO, 0.0);
+        veh5 = new Turismo(5, "3551NXB", LocalDate.now().minusYears(1), TipoMotor.GAS, 0.0);
+        veh6 = new Turismo(6, "3552NXB", LocalDate.now().minusMonths(6), TipoMotor.GAS, 0.0);
     }
 
     @Test
     public void testBonificacion() {
-        assertEquals(1, veh1.bonificacion());
-        assertEquals(0.75, veh2.bonificacion());
-        assertEquals(0.75, veh3.bonificacion());
-        assertEquals(0, veh4.bonificacion());
-        assertEquals(0, veh5.bonificacion());
-        assertEquals(0.5, veh6.bonificacion());
+        assertEquals(1.0, veh1.bonificacion(), 0);
+        assertEquals(0.75, veh2.bonificacion(), 0);
+        assertEquals(0.75, veh3.bonificacion(), 0);
+        assertEquals(0.0, veh4.bonificacion(), 0);
+        assertEquals(0.0, veh5.bonificacion(), 0);
+        assertEquals(0.5, veh6.bonificacion(), 0);
     }
 
 }
