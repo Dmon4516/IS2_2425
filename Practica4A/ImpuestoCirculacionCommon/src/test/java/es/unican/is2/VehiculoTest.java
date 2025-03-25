@@ -12,7 +12,6 @@ public class VehiculoTest {
     private Vehiculo veh5; //Gas de 1 anho, Bonificacion 0
     private Vehiculo veh6; //Gas de menos de 1 anho, Bonificacion 0.5
 
-    
 
     @Before
     public void setUp() throws Exception {
