@@ -42,6 +42,7 @@ public class VistaFuncionario extends JFrame {
 
 		this.info = info;
 		init();
+		this.setVisible(true);
 	}
 
 	public void init() {
@@ -92,6 +93,7 @@ public class VistaFuncionario extends JFrame {
 		txtDniContribuyente.setBounds(10, 51, 113, 20);
 		contentPane.add(txtDniContribuyente);
 		txtDniContribuyente.setColumns(10);
+		txtDniContribuyente.setName("txtDniContribuyente"); //Error corregido
 
 		JLabel lblDniContribuyente = new JLabel("DNI Contribuyente");
 		lblDniContribuyente.setBounds(21, 27, 139, 14);
@@ -119,7 +121,7 @@ public class VistaFuncionario extends JFrame {
 				txtNombreContribuyente.setText(c.getNombre() + " " + c.getApellido1() + " " + c.getApellido2()); //Arreglado error ordenamiento apellidos
 				txtTotalContribuyente.setText(df.format(c.totalImpuestoCirculacion()));
 				listModel.removeAllElements();
-				for (int i = 1; i < c.getVehiculos().size(); i++) {
+				for (int i = 0; i < c.getVehiculos().size(); i++) { //Error arreglado
 					Vehiculo v = c.getVehiculos().get(i);
 					listModel.addElement(v.getMatricula());
 				}

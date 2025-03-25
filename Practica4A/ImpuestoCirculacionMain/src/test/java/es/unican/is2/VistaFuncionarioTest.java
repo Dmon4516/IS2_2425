@@ -2,6 +2,8 @@ package es.unican.is2;
 
 import org.junit.*;
 
+import java.util.Arrays;
+
 import org.fest.swing.fixture.FrameFixture;
 
 public class VistaFuncionarioTest {
@@ -16,7 +18,6 @@ public class VistaFuncionarioTest {
 		GestionImpuestoCirculacion negocio = new GestionImpuestoCirculacion(contribuyentesDAO, vehiculosDAO);
 		
 		VistaFuncionario gui = new VistaFuncionario(negocio);
-        
         demo = new FrameFixture(gui);
         gui.setVisible(true);
     }
@@ -29,6 +30,7 @@ public class VistaFuncionarioTest {
     @Test
     public void testContribuyenteNoExistente() {
         demo.textBox("txtDniContribuyente").enterText("11111111B"); // Contribuyente no en la BBDD
+        demo.button("btnBuscar").click();
         demo.textBox("txtNombreContribuyente").requireText("DNI Incorrecto");
         demo.textBox("txtTotalContribuyente").requireText("0");
         demo.list("listMatriculasVehiculos").requireNoSelection();
@@ -47,14 +49,16 @@ public class VistaFuncionarioTest {
 
         // Bucle de revision contribuyentes
         for (int i = 0; i < arrayDnis.length; i++) {
+            String vehiculos[] = arrayMatriculas[i];
             demo.textBox("txtDniContribuyente").enterText(arrayDnis[i]);
             demo.button("btnBuscar").click();
             demo.textBox("txtNombreContribuyente").requireText(arrayContribuyentes[i]);
-            if (arrayMatriculas[i].length > 0) {
-                demo.list("listMatriculasVehiculos").requireSelectedItems(arrayMatriculas[i]);
+            if (vehiculos.length > 0) {
+                demo.list("listMatriculasVehiculos").requireSelectedItems(Arrays.toString(vehiculos));
             } else {
                 demo.list("listMatriculasVehiculos").requireNoSelection();
             }
+            demo.textBox("txtDniContribuyente").deleteText();
         }
     }
 
