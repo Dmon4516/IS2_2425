@@ -27,13 +27,13 @@ public class Turismo extends Vehiculo {
 		if (potencia < 8) {
 			return 25 * (1 - bonificacion);
 		} else if (potencia < 12) {
-			return 67 * (1 - bonificacion);
+			return 67 - ( 67 *  bonificacion);
 		} else if (potencia < 16) {
-			return 143 * (1 - bonificacion);
+			return 143 - (143 * bonificacion);
 		} else if (potencia < 20) {
-			return 178 * (1 - bonificacion);
+			return 178 - ( 178 * bonificacion);
 		} else {
-			return 223 * (1 - bonificacion);
+			return 223 - ( 178 * bonificacion);
 		}
 	}
 }
