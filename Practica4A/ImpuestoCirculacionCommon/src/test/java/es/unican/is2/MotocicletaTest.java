@@ -47,7 +47,7 @@ public class MotocicletaTest {
         // Límite superior del rango intermedio
         Motocicleta m = new Motocicleta(1, "0249DDD", LocalDate.now(), 
                                       TipoMotor.GASOLINA, 249);
-        assertEquals(15.0, m.precioImpuesto(), Delta);
+        assertEquals(15.0, m.precioImpuesto(), Delta); // Sin descuento
     }
 
     // Pruebas para 250cc <= cilindrada < 500cc
@@ -56,10 +56,10 @@ public class MotocicletaTest {
         // Límite inferior del rango medio-alto
         Motocicleta m = new Motocicleta(1, "0250EEE", LocalDate.now(), 
                                       TipoMotor.GASOLINA, 250);
-        assertEquals(15.0, m.precioImpuesto(), Delta); //10
+        assertEquals(15.0, m.precioImpuesto(), Delta); // Sin descuento
     }
 
-    // Pruebas para vehículos eléctricos (25% descuento)
+    // Pruebas para vehículos eléctricos (75% descuento)
     @Test
     public void testImpuestoElectrico125() {
         Motocicleta m = new Motocicleta(1, "E125KKK", LocalDate.now(), 
@@ -67,7 +67,7 @@ public class MotocicletaTest {
         assertEquals(2.0, m.precioImpuesto(), Delta); // 8 * 0.75
     }
 
-    // Pruebas para vehículos antiguos (50% descuento)
+    // Pruebas para vehículos antiguos (sin descuento)
     @Test
     public void testImpuestoAntiguo1000() {
         Motocicleta m = new Motocicleta(1, "A1000NNN", LocalDate.now().minusYears(26), 
@@ -80,6 +80,6 @@ public class MotocicletaTest {
     public void testImpuestoElectricoYAntiguo500() {
         Motocicleta m = new Motocicleta(1, "EA500OOO", LocalDate.now().minusYears(26), 
                                       TipoMotor.ELECTRICO, 500);
-        assertEquals(0.0, m.precioImpuesto(), Delta); // 0
+        assertEquals(0.0, m.precioImpuesto(), Delta); // 0 debe de tomar precedencia la antiguedad sobre electrico.
     }
 }
