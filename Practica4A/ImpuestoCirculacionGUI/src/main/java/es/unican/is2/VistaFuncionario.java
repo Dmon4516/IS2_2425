@@ -116,7 +116,7 @@ public class VistaFuncionario extends JFrame {
 		try {
 			c = info.contribuyente(dni);
 			if (c != null) {
-				txtNombreContribuyente.setText(c.getNombre() + " " + c.getApellido2() + " " + c.getApellido1());
+				txtNombreContribuyente.setText(c.getNombre() + " " + c.getApellido1() + " " + c.getApellido2()); //Arreglado error ordenamiento apellidos
 				txtTotalContribuyente.setText(df.format(c.totalImpuestoCirculacion()));
 				listModel.removeAllElements();
 				for (int i = 1; i < c.getVehiculos().size(); i++) {
