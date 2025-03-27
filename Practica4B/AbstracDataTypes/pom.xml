@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>es.unican.is2</groupId>
-    <artifactId>AbstractDataTypes</artifactId>
+    <artifactId>PruebasADT</artifactId>
     <version>1.0</version>
 
      <build>
@@ -21,8 +21,20 @@
     <dependencies>
         <dependency>
             <groupId>es.unican.is2</groupId>
-            <artifactId>AbstractDataTypesJAR</artifactId>
+            <artifactId>AbstractDataTypes</artifactId>
             <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.12.1</version>
+            <scope>test</scope>
+	    </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.12.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     
