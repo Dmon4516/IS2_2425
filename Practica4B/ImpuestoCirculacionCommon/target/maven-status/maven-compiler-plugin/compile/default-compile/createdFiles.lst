@@ -1,0 +1,12 @@
+es\unican\is2\IInfoImpuestoCirculacion.class
+es\unican\is2\Vehiculo.class
+es\unican\is2\IGestionContribuyentes.class
+es\unican\is2\OperacionNoValidaException.class
+es\unican\is2\Turismo.class
+es\unican\is2\DataAccessException.class
+es\unican\is2\IContribuyentesDAO.class
+es\unican\is2\IGestionVehiculos.class
+es\unican\is2\Contribuyente.class
+es\unican\is2\Motocicleta.class
+es\unican\is2\TipoMotor.class
+es\unican\is2\IVehiculosDAO.class
