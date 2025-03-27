@@ -17,5 +17,14 @@
             </plugin>
         </plugins>
     </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>es.unican.is2</groupId>
+            <artifactId>AbstractDataTypesJAR</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+    
 
 </project>
