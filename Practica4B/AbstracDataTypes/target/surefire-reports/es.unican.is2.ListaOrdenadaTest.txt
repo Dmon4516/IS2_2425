@@ -1,0 +1,70 @@
+-------------------------------------------------------------------------------
+Test set: es.unican.is2.ListaOrdenadaTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.034 s <<< FAILURE! -- in es.unican.is2.ListaOrdenadaTest
+es.unican.is2.ListaOrdenadaTest.testAdd -- Time elapsed: 0.015 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.AssertionError to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at es.unican.is2.ListaOrdenadaTest.testAdd(ListaOrdenadaTest.java:20)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+es.unican.is2.ListaOrdenadaTest.testGet -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.AssertionError> but was: <java.lang.IndexOutOfBoundsException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at es.unican.is2.ListaOrdenadaTest.testGet(ListaOrdenadaTest.java:53)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 5
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.get(ArrayList.java:428)
+	at es.unican.is2.ListaOrdenada.get(ListaOrdenada.java:15)
+	at es.unican.is2.ListaOrdenadaTest.lambda$testGet$1(ListaOrdenadaTest.java:53)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+es.unican.is2.ListaOrdenadaTest.testClear -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <0> but was: <3>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at es.unican.is2.ListaOrdenadaTest.testClear(ListaOrdenadaTest.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+es.unican.is2.ListaOrdenadaTest.testRemove -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.AssertionError> but was: <java.lang.IndexOutOfBoundsException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at es.unican.is2.ListaOrdenadaTest.testRemove(ListaOrdenadaTest.java:72)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 5
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
+	at java.base/java.util.Objects.checkIndex(Objects.java:365)
+	at java.base/java.util.ArrayList.remove(ArrayList.java:552)
+	at es.unican.is2.ListaOrdenada.remove(ListaOrdenada.java:29)
+	at es.unican.is2.ListaOrdenadaTest.lambda$testRemove$3(ListaOrdenadaTest.java:72)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
