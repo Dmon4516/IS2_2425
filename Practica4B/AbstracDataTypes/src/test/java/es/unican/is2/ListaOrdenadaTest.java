@@ -39,7 +39,7 @@ public class ListaOrdenadaTest {
         assertEquals(0, lista.size());
 
         // Prueba clear con elementos
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i < 5; i++) {
             lista.add(i);
         }
         lista.clear();
