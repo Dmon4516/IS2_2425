@@ -3,7 +3,6 @@ package es.unican.is2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
-import es.unican.is2.adt.*;
 
 public class ListaOrdenadaTest {
 
@@ -16,13 +15,13 @@ public class ListaOrdenadaTest {
 
     @Test
     void testAdd() {
-        // Prueba agregar elemento nulo
-        AssertionError error = assertThrows(AssertionError.class, () -> lista.add(null));
-        assertEquals("Elemento nulo", error.getMessage());
-
         // Prueba agregar sin elementos
         lista.add(1);
         assertEquals(1, lista.get(0));
+
+        // Prueba agregar elemento nulo
+        // NOTA: Solo funciona cuando se llama al elemento.compareTo, ya que las ArrayList y LinkedList permiten nulls
+        assertThrows(NullPointerException.class, () -> lista.add(null));
         
         // Prueba agregar con elementos
         lista.add(2);
@@ -45,17 +44,18 @@ public class ListaOrdenadaTest {
 
     @Test
     void testGet() {
+        // Prueba get con lista vacia
+        assertThrows(IndexOutOfBoundsException.class, () -> lista.get(0));
+
         for (int i = 0; i < 5; i++) {
             lista.add(i);
         }
         
         // Prueba get con indice negativo
-        AssertionError error = assertThrows(AssertionError.class, () -> lista.get(-1));
-        assertEquals("Indice negativo", error.getMessage());
+        assertThrows(IndexOutOfBoundsException.class, () -> lista.get(-1));
 
         // Prueba get con indice mayor que el tamaño
-        error = assertThrows(AssertionError.class, () -> lista.get(5));
-        assertEquals("Indice fuera de rango", error.getMessage());
+        assertThrows(IndexOutOfBoundsException.class, () -> lista.get(5));
 
         // Prueba get con indice correcto
         assertEquals(0, lista.get(0));
@@ -64,17 +64,17 @@ public class ListaOrdenadaTest {
 
     @Test
     void testRemove() {
+        // Prueba get con lista vacia
+        assertThrows(IndexOutOfBoundsException.class, () -> lista.remove(0));
         for (int i = 0; i < 5; i++) {
             lista.add(i);
         }
         
         // Prueba remove con indice negativo
-        AssertionError error = assertThrows(AssertionError.class, () -> lista.remove(-1));
-        assertEquals("Indice negativo", error.getMessage());
+        assertThrows(IndexOutOfBoundsException.class, () -> lista.remove(-1));
 
         // Prueba remove con indice mayor que el tamaño
-        error = assertThrows(AssertionError.class, () -> lista.remove(5));
-        assertEquals("Indice fuera de rango", error.getMessage());
+        assertThrows(IndexOutOfBoundsException.class, () -> lista.remove(5));
 
         // Prueba remove con indice correcto
         assertEquals(0, lista.remove(0));

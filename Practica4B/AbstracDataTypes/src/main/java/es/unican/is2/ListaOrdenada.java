@@ -18,7 +18,7 @@ public class ListaOrdenada<E extends Comparable<E>> implements IListaOrdenada<E>
 	public void add(E elemento) {
 		int indice = 0;
 		if (lista.size() != 0) {
-			while (indice < lista.size() && elemento.compareTo(lista.get(indice)) < 0) {
+			while (indice < lista.size() && elemento.compareTo(lista.get(indice)) >= 0) { // Arreglado error del compareTo (< 0)
 				indice++;
 			}
 		}
@@ -35,7 +35,7 @@ public class ListaOrdenada<E extends Comparable<E>> implements IListaOrdenada<E>
 	}
 
 	public void clear() {
-		for (int i=1; i<lista.size(); i++) {
+		for (int i=lista.size() - 1; i > -1; i--) { // Arreglado error de inicio de bucle (i=1) y de que borraba solo la mitad
 			lista.remove(i);
 		}
 	}
