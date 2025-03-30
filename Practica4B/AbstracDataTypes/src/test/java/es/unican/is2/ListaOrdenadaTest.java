@@ -20,7 +20,7 @@ public class ListaOrdenadaTest {
         assertEquals(1, lista.get(0));
 
         // Prueba agregar elemento nulo
-        // NOTA: Solo funciona cuando se llama al elemento.compareTo, ya que las ArrayList y LinkedList permiten nulls
+        // NOTA: Solo funciona cuando se llama al elemento.compareTo(), ya que las ArrayList y LinkedList permiten nulls
         assertThrows(NullPointerException.class, () -> lista.add(null));
         
         // Prueba agregar con elementos
@@ -31,6 +31,10 @@ public class ListaOrdenadaTest {
     @Test
     void testClear() {
         // Prueba clear sin elementos
+        lista.clear();
+        assertEquals(0, lista.size());
+
+        lista.add(0);
         lista.clear();
         assertEquals(0, lista.size());
 
