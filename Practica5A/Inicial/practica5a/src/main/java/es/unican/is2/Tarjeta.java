@@ -1,6 +1,6 @@
 package es.unican.is2;
 
-public abstract class Tarjeta {
+public abstract class Tarjeta { // CCog 0
 	
 	protected String numero, titular, cvc;		
 	protected CuentaAhorro cuentaAsociada;

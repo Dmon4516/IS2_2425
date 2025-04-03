@@ -2,7 +2,7 @@ package es.unican.is2;
 
 import java.time.LocalDateTime;
 
-public class Movimiento {
+public class Movimiento { // CCog 3
 	private String concepto;
 	private LocalDateTime fecha;
 	private double importe;

@@ -2,7 +2,7 @@ package es.unican.is2;
 
 import java.time.LocalDate;
 
-public class Debito extends Tarjeta {
+public class Debito extends Tarjeta { // CCog 1
 	
 	private double saldoDiarioDisponible;
 

@@ -4,8 +4,8 @@ package es.unican.is2;
  * Clase que representa un valor en bolsa (paquete de acciones). 
  * Cada valor contiene un n�mero de acciones 
  * de una de las entidades del IBEX 35
- */
-public class Valor {
+ */ 
+public class Valor { // CCog 2
 	
 	private String entidad;	
 	private int numAcciones;
