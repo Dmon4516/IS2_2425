@@ -6,14 +6,14 @@ public class Debito extends Tarjeta {
 	
 	private double saldoDiarioDisponible;
 
-	public Debito(String numero, String titular, String cvc, CuentaAhorro cuentaAsociada) {
+	public Debito(String numero, String titular, String cvc, CuentaAhorro cuentaAsociada) { // CC 0
 		super(numero, titular, cvc, cuentaAsociada);
-		saldoDiarioDisponible = cuentaAsociada.getLimiteDebito();
+		saldoDiarioDisponible = cuentaAsociada.getLimiteDebito(); 
 	}
 
 	@Override
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException {
-		if (saldoDiarioDisponible<x) {
+	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // 1
+		if (saldoDiarioDisponible<x) { // 1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		}
 		this.cuentaAsociada.retirar("Retirada en cajero", x);
@@ -21,27 +21,24 @@ public class Debito extends Tarjeta {
 	}
 	
 	@Override
-	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException {
-		if (saldoDiarioDisponible<x) {
+	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CC 1
+		if (saldoDiarioDisponible<x) {  // 1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		}
 		this.cuentaAsociada.retirar("Compra en : " + datos, x);
 		saldoDiarioDisponible-=x;
 	}
 	
-	public LocalDate getCaducidadDebito() {
-		return this.cuentaAsociada.getCaducidadDebito();
+	public LocalDate getCaducidadDebito() { // CC 0
+		return this.cuentaAsociada.getCaducidadDebito(); // 0
 	}
 	
-	/**
-	 * Metodo invocado automaticamente a las 00:00 de cada dia
-	 */
-	public void restableceSaldo() {
-		saldoDiarioDisponible = cuentaAsociada.getLimiteDebito();
+	public void restableceSaldo() { // CC 0
+		saldoDiarioDisponible = cuentaAsociada.getLimiteDebito(); // 0
 	}
 	
-	public CuentaAhorro getCuentaAsociada() {
-		return cuentaAsociada;
+	public CuentaAhorro getCuentaAsociada() { // CC 0
+		return cuentaAsociada; // 0
 	}
 
 }

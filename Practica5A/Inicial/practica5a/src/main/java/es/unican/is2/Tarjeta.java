@@ -6,7 +6,7 @@ public abstract class Tarjeta {
 	protected CuentaAhorro cuentaAsociada;
 
 	public Tarjeta(String numero, String titular, String cvc,
-			CuentaAhorro cuentaAsociada) {
+			CuentaAhorro cuentaAsociada) { // CC 0
 		this.numero = numero;
 		this.titular = titular;
 		this.cvc = cvc;

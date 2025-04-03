@@ -11,36 +11,36 @@ public class Valor {
 	private int numAcciones;
 	private double cotizacion;
 	
-	public Valor(String entidad, int numAcciones, double cotizacionActual) {
+	public Valor(String entidad, int numAcciones, double cotizacionActual) { // 0
 		this.entidad = entidad;
 		this.numAcciones = numAcciones;
 		this.cotizacion = cotizacionActual;
 	}
 	
-	public int getNumValores() {
-		return numAcciones;
+	public int getNumValores() { // CC 0
+		return numAcciones; 
 	}
 
-	public void setNumValores(int numValores) {
+	public void setNumValores(int numValores) { // CC 0
 		this.numAcciones = numValores;
 	}
 
-	public double getCotizacion() {
+	public double getCotizacion() { // CC 0
 		return cotizacion;
 	}
 	
-	public void setCotizacion(double cotizacion) {
+	public void setCotizacion(double cotizacion) { // CC 0
 		this.cotizacion = cotizacion;
 	}
-
-	public String getEntidad() {
+ 
+	public String getEntidad() { // CC 0
 		return entidad;
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) { // CC 2
 		Valor other = (Valor)obj;
-		return (entidad.equals(other.entidad) && numAcciones==other.numAcciones);
+		return (entidad.equals(other.entidad) && numAcciones==other.numAcciones); // 2
 
 	}
 
