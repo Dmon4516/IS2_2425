@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-public class Credito extends Tarjeta {
+public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88
 	
 	private double credito;
 	private List<Movimiento> MovimientosMensuales;
 	private List<Movimiento> historicoMovimientos;
 
 	public Credito(String numero, String titular, String cvc,
-			CuentaAhorro cuentaAsociada, double credito) {
+			CuentaAhorro cuentaAsociada, double credito) { // CCog = 0
 		super(numero, titular, cvc, cuentaAsociada);
 		this.credito = credito;
 	}
@@ -24,8 +24,8 @@ public class Credito extends Tarjeta {
 	 * @throws datoErroneoException
 	 */
 	@Override
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException {
-		if (x<0)
+	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 3
+		if (x<0) // CCog + 1
 			throw new datoErroneoException("No se puede retirar una cantidad negativa");
 		
 		Movimiento m = new Movimiento();
@@ -35,19 +35,19 @@ public class Credito extends Tarjeta {
 		x += x * 0.05; // Comision por operacion con tarjetas credito
 		m.setI(-x);
 		
-		if (getGastosAcumulados()+x > credito)
+		if (getGastosAcumulados()+x > credito) // CCog + 1
 			throw new saldoInsuficienteException("Credito insuficiente");
-		else {
+		else { // CCog + 1
 			MovimientosMensuales.add(m);
 		}
 	}
 
 	@Override
-	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException {
-		if (x<0)
+	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 2
+		if (x<0) // CCog + 1
 			throw new datoErroneoException("No se puede retirar una cantidad negativa");
 		
-		if (getGastosAcumulados() + x > credito)
+		if (getGastosAcumulados() + x > credito) // CCog + 1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		
 		Movimiento m = new Movimiento();
@@ -58,9 +58,9 @@ public class Credito extends Tarjeta {
 		MovimientosMensuales.add(m);
 	}
 	
-    private double getGastosAcumulados() {
+    private double getGastosAcumulados() { // CCog = 1
 		double r = 0.0;
-		for (int i = 0; i < this.MovimientosMensuales.size(); i++) {
+		for (int i = 0; i < this.MovimientosMensuales.size(); i++) { // CCog + 1
 			Movimiento m = (Movimiento) MovimientosMensuales.get(i);
 			r += m.getI();
 		}
@@ -68,41 +68,41 @@ public class Credito extends Tarjeta {
 	}
 	
 	
-	public LocalDate getCaducidadCredito() {
+	public LocalDate getCaducidadCredito() { // CCog = 0
 		return this.cuentaAsociada.getCaducidadCredito();
 	}
 
 	/**
 	 * Metodo que se invoca automaticamente el dia 1 de cada mes
 	 */
-	public void liquidar() {
+	public void liquidar() { // CCog = 2
 		Movimiento liq = new Movimiento();
 		LocalDateTime now = LocalDateTime.now();
 		liq.setF(now);
 		liq.setC("Liquidacion de operaciones tarjeta credito");
 		double r = 0.0;
-		for (int i = 0; i < this.MovimientosMensuales.size(); i++) {
+		for (int i = 0; i < this.MovimientosMensuales.size(); i++) { // CCog + 1
 			Movimiento m = (Movimiento) MovimientosMensuales.get(i);
 			r += m.getI();
 		}
 		liq.setI(-r);
 	
-		if (r != 0)
+		if (r != 0) // CCog + 1
 			cuentaAsociada.addMovimiento(liq);
 		
 		historicoMovimientos.addAll(MovimientosMensuales);
 		MovimientosMensuales.clear();
 	}
 
-	public List<Movimiento> getMovimientosMensuales() {
+	public List<Movimiento> getMovimientosMensuales() { // CCog = 0
 		return MovimientosMensuales;
 	}
 	
-	public CuentaAhorro getCuentaAsociada() {
+	public CuentaAhorro getCuentaAsociada() { // CCog = 0
 		return cuentaAsociada;
 	}
 	
-	public List<Movimiento> getMovimientos() {
+	public List<Movimiento> getMovimientos() { // CCog = 0
 		return historicoMovimientos;
 	}
 
