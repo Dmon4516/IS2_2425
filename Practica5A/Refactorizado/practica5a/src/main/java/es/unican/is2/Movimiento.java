@@ -8,31 +8,35 @@ public class Movimiento { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 10, WMCn = 10
 	private double importe;
 
 	// Agregar metodo constructor
-
+	public Movimiento(String concepto, LocalDateTime fecha, double importe) { // CCog = 0, WMC = 1
+		this.concepto = concepto;
+		this.fecha = fecha;
+		this.importe = importe;
+	}
 
 	// Camnbiar todos los nombres por otros mas descriptivos
 
-	public double getI() { // CCog = 0, WMC = 1
+	public double getImporte() { // CCog = 0, WMC = 1
 		return importe;
 	}
 
-	public void setI(double newMImporte) { // CCog = 0, WMC = 1
+	public void setImporte(double newMImporte) { // CCog = 0, WMC = 1
 		importe = newMImporte;
 	}
 
-	public String getC() { // CCog = 0, WMC = 1
+	public String getConcepto() { // CCog = 0, WMC = 1
 		return concepto;
 	}
 
-	public void setC(String newMConcepto) { // CCog = 0, WMC = 1
+	public void setConcepto(String newMConcepto) { // CCog = 0, WMC = 1
 		concepto = newMConcepto;
 	}
 
-	public LocalDateTime getF() { // CCog = 0, WMC = 1
+	public LocalDateTime getFecha() { // CCog = 0, WMC = 1
 		return fecha;
 	}
 
-	public void setF(LocalDateTime newMFecha) { // CCog = 0, WMC = 1
+	public void setFecha(LocalDateTime newMFecha) { // CCog = 0, WMC = 1
 		fecha = newMFecha;
 	}
 	

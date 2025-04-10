@@ -43,5 +43,5 @@ public class Valor { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 9, WMCn = 9 / 7 = 
 		return (entidad.equals(other.entidad) && numAcciones==other.numAcciones); // CCog + 1, WMC + 2 
 
 	}
-
+	
 }

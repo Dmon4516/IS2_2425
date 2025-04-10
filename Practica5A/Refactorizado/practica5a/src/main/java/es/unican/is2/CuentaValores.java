@@ -27,4 +27,11 @@ public class CuentaValores extends Cuenta { // CCog = 3, CCogn = 3 / 3 = 1, WMC 
 	}
 	
 	// Anadir valor total de valores
+	public double getValorTotal() { // CCog = 0, WMC = 1
+		double total = 0;
+		for (Valor v:valores) { // CCog + 1, WMC + 1
+			total += v.getNumValores() * v.getCotizacion(); // CCog + 2, WMC + 1
+		}
+		return total;
+	}
 }
