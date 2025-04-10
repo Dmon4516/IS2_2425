@@ -13,6 +13,7 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 6 = 0,3, WMC = 8,
 
 	@Override
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 1, WMC = 2
+		// Cambiar Tarjeta para mover todos los throws a un solo metodo
 		if (saldoDiarioDisponible<x) { // CCog + 1, WMC + 1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		}

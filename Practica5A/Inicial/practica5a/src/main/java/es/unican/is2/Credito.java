@@ -25,6 +25,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 	 */
 	@Override
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 3, WMC = 4
+		// Mayoritariamente lo mismo que en CuentaAhorro, todos los throws a un metodo (cambiar clase Tarjeta para ello), y mirar la clase Movimiento
 		if (x<0) // CCog + 1
 			throw new datoErroneoException("No se puede retirar una cantidad negativa");
 		

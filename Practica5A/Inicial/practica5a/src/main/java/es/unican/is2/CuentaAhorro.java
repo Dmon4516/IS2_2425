@@ -19,9 +19,10 @@ public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, W
 	}
 
 	public void ingresar(double x) throws datoErroneoException { // CCog = 1, WMC = 2
+		// Hacer que todos los metodos llamen a uno que haga los throws (todos tienen las mismas condiciones)
 		if (x <= 0) // CCog + 1, WMC + 1
 			throw new datoErroneoException("No se puede ingresar una cantidad negativa");
-		// Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
+		// Cambiar nombre de funciones y argumentos. Mejor cambiar la clase Movimiento
 		Movimiento m = new Movimiento(); 
 		LocalDateTime now = LocalDateTime.now();
 		m.setF(now);

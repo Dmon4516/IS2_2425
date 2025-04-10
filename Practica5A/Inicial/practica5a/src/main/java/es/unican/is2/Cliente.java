@@ -52,6 +52,7 @@ public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 /
 	// Revisar
 	public double getSaldoTotal() { // CCog = 7, WMC = 3
 		double total = 0.0;
+		// Añadir metodo getTotal() en Cuenta, y mover todo esto ahi a partir del for
 		for (Cuenta c: Cuentas) {  // CCog + 1
 			if (c instanceof CuentaAhorro) { // CCog + 2 (nesting=1), WMC + 1
 				total += ((CuentaAhorro) c).getSaldo();
@@ -65,6 +66,7 @@ public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 /
 		return total;
 	}
 	
+	// Pensar si quitar esto para bajar el WMC (no lo usa ninguna otra clase)
 	public String getNombre() { // CCog = 0, WMC = 1
 		return nombre;
 	}
