@@ -28,15 +28,18 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 6 = 0,3, WMC = 8,
 		this.cuentaAsociada.retirar("Compra en : " + datos, x);
 		saldoDiarioDisponible-=x;
 	}
-	
+
+	// Mover al padre
 	public LocalDate getCaducidadDebito() { // CCog = 0, WMC = 1
 		return this.cuentaAsociada.getCaducidadDebito();
 	}
-	
+
+	// Revisar padre y revisar cuenta asociada y cuenta
 	public void restableceSaldo() { // CCog = 0, WMC = 1
 		saldoDiarioDisponible = cuentaAsociada.getLimiteDebito();
 	}
 	
+	// Mover al padre
 	public CuentaAhorro getCuentaAsociada() { // CCog = 0, WMC = 1
 		return cuentaAsociada;
 	}

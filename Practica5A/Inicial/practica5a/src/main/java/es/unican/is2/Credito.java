@@ -9,7 +9,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 	
 	private double credito;
 	private List<Movimiento> MovimientosMensuales;
-	private List<Movimiento> historicoMovimientos;
+	private List<Movimiento> historicoMovimientos; // Estandarizador nombre
 
 	public Credito(String numero, String titular, String cvc,
 			CuentaAhorro cuentaAsociada, double credito) { // CCog = 0, WMC = 1
@@ -28,7 +28,8 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 		if (x<0) // CCog + 1
 			throw new datoErroneoException("No se puede retirar una cantidad negativa");
 		
-		Movimiento m = new Movimiento();
+		Movimiento m = new Movimiento(); // Estandarizador nombre
+		// Revisar con cambios en movimiento
 		LocalDateTime now = LocalDateTime.now();
 		m.setF(now);
 		m.setC("Retirada en cajero");
@@ -38,7 +39,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 		if (getGastosAcumulados()+x > credito) // CCog + 1
 			throw new saldoInsuficienteException("Credito insuficiente");
 		else { // CCog + 1
-			MovimientosMensuales.add(m);
+			MovimientosMensuales.add(m); 
 		}
 	}
 
@@ -50,6 +51,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 		if (getGastosAcumulados() + x > credito) // CCog + 1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		
+		// Revisar con cambios en movimiento
 		Movimiento m = new Movimiento();
 		LocalDateTime now = LocalDateTime.now();
 		m.setF(now);
@@ -58,6 +60,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 		MovimientosMensuales.add(m);
 	}
 	
+	// Cambiar nombre de variables
     private double getGastosAcumulados() { // CCog = 1, WMC = 1
 		double r = 0.0;
 		for (int i = 0; i < this.MovimientosMensuales.size(); i++) { // CCog + 1
@@ -67,7 +70,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 		return r;
 	}
 	
-	
+	// Idk
 	public LocalDate getCaducidadCredito() { // CCog = 0, WMC = 1
 		return this.cuentaAsociada.getCaducidadCredito();
 	}
@@ -76,16 +79,16 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 	 * Metodo que se invoca automaticamente el dia 1 de cada mes
 	 */
 	public void liquidar() { // CCog = 2, WMC = 2
-		Movimiento liq = new Movimiento();
+		Movimiento liq = new Movimiento(); // Revisar con cambios en movimiento
 		LocalDateTime now = LocalDateTime.now();
 		liq.setF(now);
 		liq.setC("Liquidacion de operaciones tarjeta credito");
-		double r = 0.0;
+		double r = 0.0; // Estandarizador nombre
 		for (int i = 0; i < this.MovimientosMensuales.size(); i++) { // CCog + 1
-			Movimiento m = (Movimiento) MovimientosMensuales.get(i);
-			r += m.getI();
+			Movimiento m = (Movimiento) MovimientosMensuales.get(i); // Estandarizador nombre
+			r += m.getI(); // Cambiar nombre y revisar con cambios en movimiento
 		}
-		liq.setI(-r);
+		liq.setI(-r); // Revisar nombre y cambios con movimiento
 	
 		if (r != 0) // CCog + 1
 			cuentaAsociada.addMovimiento(liq);
@@ -98,6 +101,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 		return MovimientosMensuales;
 	}
 	
+	// Mover al padre
 	public CuentaAhorro getCuentaAsociada() { // CCog = 0, WMC = 1
 		return cuentaAsociada;
 	}

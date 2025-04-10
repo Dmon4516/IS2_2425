@@ -14,7 +14,7 @@ public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 /
 	
     private List<Cuenta> Cuentas = new LinkedList<Cuenta>();
     
-    private List<Tarjeta> tarjetas = new LinkedList<Tarjeta>();
+    private List<Tarjeta> tarjetas = new LinkedList<Tarjeta>(); // Estandarizador nombre
 
  	public Cliente(String titular, String calle, String zip, String localidad, 
  			String telefono, String dni) {  // CCog = 0, WMC = 1
@@ -33,11 +33,13 @@ public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 /
 	}
 	
 	public void anhadeCuenta(Cuenta c) { // CCog = 0, WMC = 1
-		Cuentas.add(c);
+		Cuentas.add(c); // Cambiar variables
 	}
 	
 	public void anhadeTarjeta(Tarjeta t) { // CCog = 2, WMC = 3
-		tarjetas.add(t);
+		tarjetas.add(t); // Cambiar variables
+
+		// Cambiar dentro de la clases abtractas de la tarjeta
 		if (t instanceof Debito) { // CCog + 1, WMC + 1
 			Debito td = (Debito)t;
 			td.getCuentaAsociada().setCaducidadDebito(td.getCaducidadDebito());
@@ -47,6 +49,7 @@ public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 /
 		}
 	}
 	
+	// Revisar
 	public double getSaldoTotal() { // CCog = 7, WMC = 3
 		double total = 0.0;
 		for (Cuenta c: Cuentas) {  // CCog + 1
@@ -54,7 +57,8 @@ public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 /
 				total += ((CuentaAhorro) c).getSaldo();
 			} else if (c instanceof CuentaValores)  { // CCog + 1, WMC + 1
 				for (Valor v: ((CuentaValores) c).getValores()) { // CCog + 3 (nesting=2)
-					total += v.getCotizacion()*v.getNumValores();
+					// Agregar metodo en clase Valor
+					total += v.getCotizacion()*v.getNumValores(); 
 				}
 			}
 		}

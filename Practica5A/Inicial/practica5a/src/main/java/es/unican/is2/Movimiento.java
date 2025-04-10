@@ -7,6 +7,11 @@ public class Movimiento { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 10, WMCn = 10
 	private LocalDateTime fecha;
 	private double importe;
 
+	// Agregar metodo constructor
+
+
+	// Camnbiar todos los nombres por otros mas descriptivos
+
 	public double getI() { // CCog = 0, WMC = 1
 		return importe;
 	}
@@ -14,7 +19,7 @@ public class Movimiento { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 10, WMCn = 10
 	public void setI(double newMImporte) { // CCog = 0, WMC = 1
 		importe = newMImporte;
 	}
-	
+
 	public String getC() { // CCog = 0, WMC = 1
 		return concepto;
 	}
@@ -30,7 +35,6 @@ public class Movimiento { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 10, WMCn = 10
 	public void setF(LocalDateTime newMFecha) { // CCog = 0, WMC = 1
 		fecha = newMFecha;
 	}
-
 	
 	@Override
 	public boolean equals(Object obj) { // CCog = 1, WMC = 4

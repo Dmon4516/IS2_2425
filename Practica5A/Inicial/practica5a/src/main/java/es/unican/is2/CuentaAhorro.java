@@ -21,12 +21,13 @@ public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, W
 	public void ingresar(double x) throws datoErroneoException { // CCog = 1, WMC = 2
 		if (x <= 0) // CCog + 1, WMC + 1
 			throw new datoErroneoException("No se puede ingresar una cantidad negativa");
-		Movimiento m = new Movimiento();
+		// Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
+		Movimiento m = new Movimiento(); 
 		LocalDateTime now = LocalDateTime.now();
 		m.setF(now);
 		m.setC("Ingreso en efectivo");
 		m.setI(x);
-		this.Movimientos.add(m);
+		this.Movimientos.add(m); 
 	}
 
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 2, WMC = 3
@@ -58,7 +59,7 @@ public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, W
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		if (x <= 0) // CCog + 1, WMC + 1
 			throw new datoErroneoException("No se puede retirar una cantidad negativa");
-		Movimiento m = new Movimiento();
+		Movimiento m = new Movimiento(); // Cambiar movimiento
 		LocalDateTime now = LocalDateTime.now();
 		m.setF(now);
 		m.setC(concepto);
@@ -70,13 +71,13 @@ public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, W
 		double r = 0.0;
 		for (int i = 0; i < this.Movimientos.size(); i++) { // CCog + 1
 			Movimiento m = (Movimiento) Movimientos.get(i);
-			r += m.getI();
+			r += m.getI(); // Cambiar nombre
 		}
 		return r;
 	}
 
 	public void addMovimiento(Movimiento m) { // CCog = 0, WMC = 1
-		Movimientos.add(m);
+		Movimientos.add(m); // Cambiar nombre
 	}
 
 	public List<Movimiento> getMovimientos() { // CCog = 0, WMC = 1
