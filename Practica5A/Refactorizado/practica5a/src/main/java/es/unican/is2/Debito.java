@@ -4,23 +4,27 @@ import java.time.LocalDate;
 
 public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 6 = 0,3, WMC = 8, WMCn = 8 / 6 = 1,33
 	
+	private double limite;
 	private double saldoDiarioDisponible;
+	private LocalDate caducidadDebito;
 
 	public Debito(String numero, String titular, String cvc, CuentaAhorro cuentaAsociada) { // CCog = 0, WMC = 1
 		super(numero, titular, cvc, cuentaAsociada);
-		saldoDiarioDisponible = cuentaAsociada.getLimiteDebito(); 
+		limite = 1000.0;
+		saldoDiarioDisponible = limite; 
 	}
 
 	@Override
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 1, WMC = 2
 		confirmaSaldo(x);
 		this.cuentaAsociada.retirar("Retirada en cajero", x);
-		saldoDiarioDisponible -=x ;
+		saldoDiarioDisponible -= x ;
 	}
 	
 	@Override
 	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 1, WMC = 2
 		confirmaSaldo(x);
+		confirmaCantidadNegativa(x);
 		this.cuentaAsociada.retirar("Compra en : " + datos, x);
 		saldoDiarioDisponible -= x;
 	}
@@ -30,14 +34,32 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 6 = 0,3, WMC = 8,
 			throw new saldoInsuficienteException("Saldo insuficiente");
 		}
 	}
-	// Mover de cuenta
-	public LocalDate getCaducidadDebito() { // CCog = 0, WMC = 1
-		return this.cuentaAsociada.getCaducidadDebito();
+	private void confirmaCantidadNegativa(double x) throws datoErroneoException { // CCog = 1, WMC = 2
+		if (x <= 0) { // CCog + 1, WMC + 1
+			throw new datoErroneoException("No se puede ingresar una cantidad negativa");
+		}
 	}
 
+	@Override
+	public void actualizaCaducidadCuenta() {
+		this.fechaCaducidad = cuentaAsociada.getCaducidadDebito();
+	}
+	
+	public LocalDate getCaducidadDebito() { // CCog = 0, WMC = 1
+		return caducidadDebito;
+	}
+
+	public void setCaducidadDebito(LocalDate caducidadDebito) { // CCog = 0, WMC = 1
+		this.caducidadDebito = caducidadDebito;
+	}
+
+	public double getLimiteDebito() { // CCog = 0, WMC = 1
+		return limiteDebito;
+	}
+	
 	// Mover de cuenta
 	public void restableceSaldo() { // CCog = 0, WMC = 1
-		saldoDiarioDisponible = cuentaAsociada.getLimiteDebito();
+		saldoDiarioDisponible = limite;
 	}
 	
 	//  Revisar padre

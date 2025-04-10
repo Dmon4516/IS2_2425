@@ -14,8 +14,6 @@ public class Movimiento { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 10, WMCn = 10
 		this.importe = importe;
 	}
 
-	// Camnbiar todos los nombres por otros mas descriptivos
-
 	public double getImporte() { // CCog = 0, WMC = 1
 		return importe;
 	}

@@ -5,15 +5,15 @@ import java.util.List;
 
 public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 / 11 = 1,36
 	
-	public String nombre;
-	public String calle;
-	public String zip;
-	public String localidad;
-	public String telefono;
-	public String dni;
+	// Cambio a private
+	private String nombre;
+	private String calle;
+	private String zip;
+	private String localidad;
+	private String telefono;
+	private String dni;
 	
-    private List<Cuenta> Cuentas = new LinkedList<Cuenta>();
-    
+    private List<Cuenta> cuentas = new LinkedList<Cuenta>();
     private List<Tarjeta> tarjetas = new LinkedList<Tarjeta>(); // Estandarizador nombre
 
  	public Cliente(String titular, String calle, String zip, String localidad, 
@@ -33,34 +33,19 @@ public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 /
 	}
 	
 	public void anhadeCuenta(Cuenta c) { // CCog = 0, WMC = 1
-		Cuentas.add(c); // Cambiar variables
+		cuentas.add(c);
 	}
 	
 	public void anhadeTarjeta(Tarjeta t) { // CCog = 2, WMC = 3
-		tarjetas.add(t); // Cambiar variables
-
-		// Cambiar dentro de la clases abtractas de la tarjeta
-		if (t instanceof Debito) { // CCog + 1, WMC + 1
-			Debito td = (Debito)t;
-			td.getCuentaAsociada().setCaducidadDebito(td.getCaducidadDebito());
-		} else { // CCog + 1, WMC + 1
-			Credito tc = (Credito) t;
-			tc.getCuentaAsociada().setCaducidadCredito(tc.getCaducidadCredito());
-		}
+		tarjetas.add(t);
+		t.actualizaCaducidadCuenta();
 	}
 	
 	// Revisar
 	public double getSaldoTotal() { // CCog = 7, WMC = 3
 		double total = 0.0;
 		for (Cuenta c: Cuentas) {  // CCog + 1
-			if (c instanceof CuentaAhorro) { // CCog + 2 (nesting=1), WMC + 1
-				total += ((CuentaAhorro) c).getSaldo();
-			} else if (c instanceof CuentaValores)  { // CCog + 1, WMC + 1
-				for (Valor v: ((CuentaValores) c).getValores()) { // CCog + 3 (nesting=2)
-					// Agregar metodo en clase Valor
-					total += v.getCotizacion()*v.getNumValores(); 
-				}
-			}
+			total += c.calculaSaldo();
 		}
 		return total;
 	}
