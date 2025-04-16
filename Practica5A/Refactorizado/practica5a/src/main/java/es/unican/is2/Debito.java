@@ -40,7 +40,7 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 11 = 0,18, WMC = 
 		}
 	}
 
-	// TODO: considerar eliminar metodos de aqui si no se usa en el resto de clases para bajar el WMC
+	// TODO: considerar eliminar metodos de aqui si no se usa en el resto de clases para bajar el WMC, considerar sacar TODOS los throws y meterlos en una clase aparte
 
 	@Override
 	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1

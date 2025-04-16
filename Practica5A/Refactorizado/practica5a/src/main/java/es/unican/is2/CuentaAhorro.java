@@ -67,7 +67,7 @@ public class CuentaAhorro extends Cuenta { // CCog = 3, CCogn = 3 / 10 = 0,3, WM
 			throw new datoErroneoException("No se puede retirar una cantidad negativa");
 	}
 
-	// TODO
+	// TODO: revisar metodos y considerar si quitarlos o no, considerar si sacar TODOS los throws a una clase aparte
 
 
 	public void addMovimiento(Movimiento m) { // CCog = 0, WMC = 1

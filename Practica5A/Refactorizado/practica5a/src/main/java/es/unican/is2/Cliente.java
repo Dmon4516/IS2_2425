@@ -49,8 +49,6 @@ public class Cliente { // CCog = 1, CCogn = 1 / 11 = 0,09, WMC = 11, WMCn = 11 /
 		}
 		return total;
 	}
-
-	//TODO: considerar quitar los gets para bajar al WMC ideal
 	
 	public String getNombre() { // CCog = 0, WMC = 1
 		return nombre;

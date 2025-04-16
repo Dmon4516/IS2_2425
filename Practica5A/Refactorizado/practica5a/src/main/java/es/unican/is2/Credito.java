@@ -90,7 +90,7 @@ public class Credito extends Tarjeta { // CCog = 5, CCogn = 5 / 13 = 0,38, WMC =
 		movimientosMensuales.clear();
 	}
 
-	// TODO: considerar quitar estos, si no son referenciados en ninguna otra clase
+	// TODO: considerar repartir funcionalidades en diferentes clases (creando clases nuevas)
 
 	@Override
 	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1
