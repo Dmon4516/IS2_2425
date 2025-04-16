@@ -2,7 +2,7 @@ package es.unican.is2;
 
 import java.time.LocalDate;
 
-public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 6 = 0,3, WMC = 8, WMCn = 8 / 6 = 1,33
+public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 11 = 0,18, WMC = 15, WMCn = 15 / 11 = 1,36
 	
 	private double limite;
 	private double saldoDiarioDisponible;
@@ -15,14 +15,14 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 6 = 0,3, WMC = 8,
 	}
 
 	@Override
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 1, WMC = 2
+	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 2
 		confirmaSaldo(x);
 		this.cuentaAsociada.retirar("Retirada en cajero", x);
 		saldoDiarioDisponible -= x ;
 	}
 	
 	@Override
-	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 1, WMC = 2
+	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 2
 		confirmaSaldo(x);
 		confirmaCantidadNegativa(x);
 		this.cuentaAsociada.retirar("Compra en : " + datos, x);
@@ -40,8 +40,10 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 6 = 0,3, WMC = 8,
 		}
 	}
 
+	// TODO: considerar eliminar metodos de aqui si no se usa en el resto de clases para bajar el WMC
+
 	@Override
-	public void actualizaCaducidadCuenta() {
+	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1
 		this.fechaCaducidad = cuentaAsociada.getCaducidadDebito();
 	}
 	

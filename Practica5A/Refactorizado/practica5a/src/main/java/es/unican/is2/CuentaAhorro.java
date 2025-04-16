@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, WMC = 19, WMCn = 19 / 13 = 1,46
+public class CuentaAhorro extends Cuenta { // CCog = 3, CCogn = 3 / 10 = 0,3, WMC = 12, WMCn = 12 / 10 = 1,2
 
 	private List<Movimiento> Movimientos;
 
@@ -17,28 +17,28 @@ public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, W
 		Movimientos = new LinkedList<Movimiento>();
 	}
 
-	public void ingresar(double x) throws datoErroneoException { // CCog = 1, WMC = 2
+	public void ingresar(double x) throws datoErroneoException { // CCog = 0, WMC = 1
 		confirmaCantidadNegativa(x); 
 		// Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
-		Movimiento m = new Movimiento(ingresoEfectivo, LocalDateTime.now(), x); // CCog + 1, WMC + 1
+		Movimiento m = new Movimiento(ingresoEfectivo, LocalDateTime.now(), x);
 		this.Movimientos.add(m); 
 	}
 
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 2, WMC = 3
+	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
 		confirmaSaldo(x);
-		confirmaCantidadNegativa(x); // CCog + 1, WMC + 1
+		confirmaCantidadNegativa(x);
 		Movimiento m = new Movimiento(retiradaEfectivo, LocalDateTime.now(), -x); // Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
 
 		this.Movimientos.add(m);
 	}
 
-	public void ingresar(String concepto, double x) throws datoErroneoException { // CCog = 1, WMC = 2
+	public void ingresar(String concepto, double x) throws datoErroneoException { // CCog = 0, WMC = 1
 		confirmaCantidadNegativa(x);
 		Movimiento m = new Movimiento(concepto, LocalDateTime.now(), x); // Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
 		this.Movimientos.add(m);
 	}
 
-	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 2, WMC = 3
+	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
 		confirmaSaldo(x);
 		confirmaCantidadNegativa(x);
 		
@@ -47,7 +47,7 @@ public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, W
 	}
 
 	@Override
-	public double calculaSaldo() { // CCog = 0, WMC = 1
+	public double calculaSaldo() { // CCog = 1, WMC = 1
 		double saldo = 0.0;
 		for (int i = 0; i < this.Movimientos.size(); i++) { // CCog + 1
 			Movimiento m = (Movimiento) Movimientos.get(i);
@@ -57,8 +57,8 @@ public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, W
 	}
 
 	// Sacar fuera
-	private void confirmaSaldo(double x) throws saldoInsuficienteException { 
-		if (calculaSaldo() < x)
+	private void confirmaSaldo(double x) throws saldoInsuficienteException { // CCog = 1, WMC = 2
+		if (calculaSaldo() < x) // CCog + 1, WMC + 1
 			throw new saldoInsuficienteException("Saldo insuficiente");
 	}
 
@@ -66,6 +66,8 @@ public class CuentaAhorro extends Cuenta { // CCog = 7, CCogn = 7 / 13 = 0,53, W
 		if (x <= 0)
 			throw new datoErroneoException("No se puede retirar una cantidad negativa");
 	}
+
+	// TODO
 
 
 	public void addMovimiento(Movimiento m) { // CCog = 0, WMC = 1

@@ -2,7 +2,7 @@ package es.unican.is2;
 
 import java.time.LocalDateTime;
 
-public class Movimiento { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 10, WMCn = 10 / 7 = 1,43
+public class Movimiento { // CCog = 1, CCogn = 1 / 8 = 0,12, WMC = 8, WMCn = 8 / 8 = 1
 	private String concepto;
 	private LocalDateTime fecha;
 	private double importe;
@@ -39,9 +39,9 @@ public class Movimiento { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 10, WMCn = 10
 	}
 	
 	@Override
-	public boolean equals(Object obj) { // CCog = 1, WMC = 4
+	public boolean equals(Object obj) { // CCog = 1, WMC = 1
 		Movimiento other = (Movimiento)obj;
-		return (concepto.equals(other.concepto) && fecha.equals(other.fecha) && importe==other.importe); // CCog + 1, WMC + 3
+		return (concepto.equals(other.concepto) && fecha.equals(other.fecha) && importe==other.importe); // CCog + 1
 	}
 	
 }

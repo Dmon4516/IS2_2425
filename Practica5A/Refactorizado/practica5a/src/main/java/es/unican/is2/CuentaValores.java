@@ -3,7 +3,7 @@ package es.unican.is2;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CuentaValores extends Cuenta { // CCog = 3, CCogn = 3 / 3 = 1, WMC = 4, WMCn = 4 / 3 = 1,33
+public class CuentaValores extends Cuenta { // CCog = 4, CCogn = 4 / 4 = 1, WMC = 5, WMCn = 5 / 4 = 1,25
 
 	private List<Valor> valores;
 	
@@ -28,10 +28,10 @@ public class CuentaValores extends Cuenta { // CCog = 3, CCogn = 3 / 3 = 1, WMC 
 	
 	// Anadir valor total de valores
 	@Override
-	public double calculaSaldo() { // CCog = 0, WMC = 1
+	public double calculaSaldo() { // CCog = 1, WMC = 1
 		double total = 0;
-		for (Valor v:valores) { // CCog + 1, WMC + 1
-			total += v.getNumValores() * v.getCotizacion(); // CCog + 2, WMC + 1
+		for (Valor v:valores) { // CCog + 1
+			total += v.getNumValores() * v.getCotizacion();
 		}
 		return total;
 	}

@@ -3,7 +3,7 @@ package es.unican.is2;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 / 11 = 1,36
+public class Cliente { // CCog = 1, CCogn = 1 / 11 = 0,09, WMC = 11, WMCn = 11 / 11 = 1
 	
 	// Cambio a private
 	private String nombre;
@@ -36,19 +36,21 @@ public class Cliente { // CCog = 9, CCogn = 9 / 11 = 0,81, WMC = 15, WMCn = 15 /
 		cuentas.add(c);
 	}
 	
-	public void anhadeTarjeta(Tarjeta t) { // CCog = 2, WMC = 3
+	public void anhadeTarjeta(Tarjeta t) { // CCog = 0, WMC = 1
 		tarjetas.add(t);
 		t.actualizaCaducidadCuenta();
 	}
 	
 	// Revisar
-	public double getSaldoTotal() { // CCog = 7, WMC = 3
+	public double getSaldoTotal() { // CCog = 1, WMC = 1
 		double total = 0.0;
 		for (Cuenta c: Cuentas) {  // CCog + 1
 			total += c.calculaSaldo();
 		}
 		return total;
 	}
+
+	//TODO: considerar quitar los gets para bajar al WMC ideal
 	
 	public String getNombre() { // CCog = 0, WMC = 1
 		return nombre;

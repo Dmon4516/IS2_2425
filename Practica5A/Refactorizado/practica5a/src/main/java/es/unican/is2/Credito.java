@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 14, WMCn = 14 / 9 = 1,55
+public class Credito extends Tarjeta { // CCog = 5, CCogn = 5 / 13 = 0,38, WMC = 16, WMCn = 16 / 13 = 1,23
 	
 	private double credito;
 	private List<Movimiento> movimientosMensuales;
@@ -30,7 +30,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 	 * @throws datoErroneoException
 	 */
 	@Override
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 3, WMC = 4
+	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
 		
 		confirmaCantidadNegativa(x);
 		x += x * 0.05; // Comision por operacion con tarjetas credito
@@ -41,7 +41,7 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 	}
 
 	@Override
-	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 2, WMC = 3
+	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
 		confirmaCantidadNegativa(x);
 		confirmaCredito(x);
 		// Revisar con cambios en movimiento
@@ -83,19 +83,21 @@ public class Credito extends Tarjeta { // CCog = 8, CCogn = 8 / 9 = 0,88, WMC = 
 
 		Movimiento liquidado = new Movimiento(liquidacion, LocalDateTime.Now(), gastos);
 	
-		if (gastos != 0) // CCog + 1
+		if (gastos != 0) // CCog + 1, WMC + 1
 			cuentaAsociada.addMovimiento(liquidado);
 		
 		historicoMovimientos.addAll(movimientosMensuales);
 		movimientosMensuales.clear();
 	}
 
+	// TODO: considerar quitar estos, si no son referenciados en ninguna otra clase
+
 	@Override
 	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1
 		this.fechaCaducidad = caducidadCredito;
 	}
 
-	public void setCaducidadCredito(LocalDate caducidadCredito) { 
+	public void setCaducidadCredito(LocalDate caducidadCredito) { // CCog = 0, WMC = 1
 		this.caducidadCredito = caducidadCredito;
 	}
 
