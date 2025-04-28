@@ -36,14 +36,14 @@ public class Credito extends Tarjeta { // CCog = 5, CCogn = 5 / 13 = 0,38, WMC =
 		x += x * 0.05; // Comision por operacion con tarjetas credito
 		Movimiento m = new Movimiento(retiro, LocalDate.now(), -x); // Estandarizador nombre
 		
-		confirmaCredito(getGastosAcumulados() + x, credito);
+		confirmaCreditoOSaldo(getGastosAcumulados() + x, credito, "Credito insuficiente");
 		movimientosMensuales.add(m); 
 	}
 
 	@Override
 	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
 		confirmaCantidadNegativa(x);
-		confirmaCredito(getGastosAcumulados() + x, credito);
+		confirmaCreditoOSaldo(getGastosAcumulados() + x, credito, "Saldo insuficiente");
 		// Revisar con cambios en movimiento
 		Movimiento m = new Movimiento(compra + datos, LocalDate.now(), -x); // Estandarizador nombre
 		movimientosMensuales.add(m);

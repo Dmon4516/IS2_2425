@@ -8,9 +8,9 @@ public class ValidacionCantidades {
         }
     }
     
-    public static void confirmaCredito(double x, double credito) throws saldoInsuficienteException { // CCog = 1, WMC = 2
+    public static void confirmaCreditoOSaldo(double x, double credito, String mensaje) throws saldoInsuficienteException { // CCog = 1, WMC = 2
         if (x > credito) { // CCog + 1, WMC + 1
-            throw new saldoInsuficienteException("Credito insuficiente");
+            throw new saldoInsuficienteException(mensaje);
         }
     }
 
