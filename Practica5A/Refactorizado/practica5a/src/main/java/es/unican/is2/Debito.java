@@ -16,31 +16,20 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 11 = 0,18, WMC = 
 
 	@Override
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 2
-		confirmaSaldo(x);
+		confirmaCantidadNegativa(x);
+		confirmaCredito(x, saldoDiarioDisponible);
 		this.cuentaAsociada.retirar("Retirada en cajero", x);
 		saldoDiarioDisponible -= x ;
 	}
 	
 	@Override
 	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 2
-		confirmaSaldo(x);
 		confirmaCantidadNegativa(x);
+		confirmaCredito(x, saldoDiarioDisponible);
+		
 		this.cuentaAsociada.retirar("Compra en : " + datos, x);
 		saldoDiarioDisponible -= x;
 	}
-
-	private void confirmaSaldo(double x) throws saldoInsuficienteException { // CCog = 1, WMC = 2
-		if (saldoDiarioDisponible < x) { // CCog + 1, WMC + 1
-			throw new saldoInsuficienteException("Saldo insuficiente");
-		}
-	}
-	private void confirmaCantidadNegativa(double x) throws datoErroneoException { // CCog = 1, WMC = 2
-		if (x <= 0) { // CCog + 1, WMC + 1
-			throw new datoErroneoException("No se puede ingresar una cantidad negativa");
-		}
-	}
-
-	// TODO: considerar eliminar metodos de aqui si no se usa en el resto de clases para bajar el WMC, considerar sacar TODOS los throws y meterlos en una clase aparte
 
 	@Override
 	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1

@@ -25,7 +25,7 @@ public class CuentaAhorro extends Cuenta { // CCog = 3, CCogn = 3 / 10 = 0,3, WM
 	}
 
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
-		confirmaSaldo(x);
+		confirmaCredito(x ,calculaSaldo());
 		confirmaCantidadNegativa(x);
 		Movimiento m = new Movimiento(retiradaEfectivo, LocalDateTime.now(), -x); // Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
 
@@ -39,10 +39,10 @@ public class CuentaAhorro extends Cuenta { // CCog = 3, CCogn = 3 / 10 = 0,3, WM
 	}
 
 	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
-		confirmaSaldo(x);
+		confirmaCredito(x, calculaSaldo());
 		confirmaCantidadNegativa(x);
 		
-		Movimiento m = new Movimiento(concepto, LocalDateTime.now(), -X); // Cambiar movimiento
+		Movimiento m = new Movimiento(concepto, LocalDateTime.now(), -x); // Cambiar movimiento
 		this.Movimientos.add(m);
 	}
 
@@ -54,17 +54,6 @@ public class CuentaAhorro extends Cuenta { // CCog = 3, CCogn = 3 / 10 = 0,3, WM
 			saldo += m.getImporte(); // Cambiar nombre
 		}
 		return saldo;
-	}
-
-	// Sacar fuera
-	private void confirmaSaldo(double x) throws saldoInsuficienteException { // CCog = 1, WMC = 2
-		if (calculaSaldo() < x) // CCog + 1, WMC + 1
-			throw new saldoInsuficienteException("Saldo insuficiente");
-	}
-
-	private void confirmaCantidadNegativa(double x) throws datoErroneoException { // CCog = 1, WMC = 2
-		if (x <= 0)
-			throw new datoErroneoException("No se puede retirar una cantidad negativa");
 	}
 
 	// TODO: revisar metodos y considerar si quitarlos o no, considerar si sacar TODOS los throws a una clase aparte

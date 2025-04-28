@@ -44,7 +44,7 @@ public class Cliente { // CCog = 1, CCogn = 1 / 11 = 0,09, WMC = 11, WMCn = 11 /
 	// Revisar
 	public double getSaldoTotal() { // CCog = 1, WMC = 1
 		double total = 0.0;
-		for (Cuenta c: Cuentas) {  // CCog + 1
+		for (Cuenta c: cuentas) {  // CCog + 1
 			total += c.calculaSaldo();
 		}
 		return total;
@@ -73,7 +73,5 @@ public class Cliente { // CCog = 1, CCogn = 1 / 11 = 0,09, WMC = 11, WMCn = 11 /
 	public String getDni() { // CCog = 0, WMC = 1
 		return dni;
 	}
-	
-	
 	
 }
