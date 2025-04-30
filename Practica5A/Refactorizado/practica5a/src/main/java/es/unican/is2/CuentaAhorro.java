@@ -18,29 +18,29 @@ public class CuentaAhorro extends Cuenta { // CCog = 3, CCogn = 3 / 10 = 0,3, WM
 	}
 
 	public void ingresar(double x) throws datoErroneoException { // CCog = 0, WMC = 1
-		confirmaCantidadNegativa(x); 
+		ValidacionCantidades.confirmaCantidadNegativa(x); 
 		// Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
 		Movimiento m = new Movimiento(ingresoEfectivo, LocalDateTime.now(), x);
 		this.Movimientos.add(m); 
 	}
 
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
-		confirmaCreditoOSaldo(x ,calculaSaldo(), "Saldo insuficiente");
-		confirmaCantidadNegativa(x);
+		ValidacionCantidades.confirmaCreditoOSaldo(x ,calculaSaldo(), "Saldo insuficiente");
+		ValidacionCantidades.confirmaCantidadNegativa(x);
 		Movimiento m = new Movimiento(retiradaEfectivo, LocalDateTime.now(), -x); // Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
 
 		this.Movimientos.add(m);
 	}
 
 	public void ingresar(String concepto, double x) throws datoErroneoException { // CCog = 0, WMC = 1
-		confirmaCantidadNegativa(x);
+		ValidacionCantidades.confirmaCantidadNegativa(x);
 		Movimiento m = new Movimiento(concepto, LocalDateTime.now(), x); // Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
 		this.Movimientos.add(m);
 	}
 
 	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
-		confirmaCreditoOSaldo(x, calculaSaldo(), "Saldo insuficiente");
-		confirmaCantidadNegativa(x);
+		ValidacionCantidades.confirmaCreditoOSaldo(x, calculaSaldo(), "Saldo insuficiente");
+		ValidacionCantidades.confirmaCantidadNegativa(x);
 		
 		Movimiento m = new Movimiento(concepto, LocalDateTime.now(), -x); // Cambiar movimiento
 		this.Movimientos.add(m);

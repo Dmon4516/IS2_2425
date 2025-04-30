@@ -16,6 +16,7 @@ public class Credito extends Tarjeta { // CCog = 5, CCogn = 5 / 13 = 0,38, WMC =
 	private String liquidacion = "Liquidacion de operaciones tarjeta credito";
 
 	private LocalDate caducidadCredito;
+	private LocalDate fechaCaducidad; 
 
 	public Credito(String numero, String titular, String cvc,
 			CuentaAhorro cuentaAsociada, double credito) { // CCog = 0, WMC = 1
@@ -32,20 +33,21 @@ public class Credito extends Tarjeta { // CCog = 5, CCogn = 5 / 13 = 0,38, WMC =
 	@Override
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
 		
-		confirmaCantidadNegativa(x);
+		ValidacionCantidades.confirmaCantidadNegativa(x);
 		x += x * 0.05; // Comision por operacion con tarjetas credito
-		Movimiento m = new Movimiento(retiro, LocalDate.now(), -x); // Estandarizador nombre
 		
-		confirmaCreditoOSaldo(getGastosAcumulados() + x, credito, "Credito insuficiente");
+		ValidacionCantidades.confirmaCreditoOSaldo(getGastosAcumulados() + x, credito, "Credito insuficiente");
+
+		Movimiento m = new Movimiento(retiro, LocalDateTime.now(), -x); 
 		movimientosMensuales.add(m); 
 	}
 
 	@Override
 	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
-		confirmaCantidadNegativa(x);
-		confirmaCreditoOSaldo(getGastosAcumulados() + x, credito, "Saldo insuficiente");
+		ValidacionCantidades.confirmaCantidadNegativa(x);
+		ValidacionCantidades.confirmaCreditoOSaldo(getGastosAcumulados() + x, credito, "Saldo insuficiente");
 		// Revisar con cambios en movimiento
-		Movimiento m = new Movimiento(compra + datos, LocalDate.now(), -x); // Estandarizador nombre
+		Movimiento m = new Movimiento(compra + datos, LocalDateTime.now(), -x); // Estandarizador nombre
 		movimientosMensuales.add(m);
 	}
 	
@@ -94,7 +96,7 @@ public class Credito extends Tarjeta { // CCog = 5, CCogn = 5 / 13 = 0,38, WMC =
 	}
 
 	public List<Movimiento> getMovimientosMensuales() { // CCog = 0, WMC = 1
-		return MovimientosMensuales;
+		return movimientosMensuales;
 	}
 	
 	// Mover al padre

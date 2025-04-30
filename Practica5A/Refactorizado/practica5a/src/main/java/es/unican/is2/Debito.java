@@ -7,6 +7,7 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 11 = 0,18, WMC = 
 	private double limite;
 	private double saldoDiarioDisponible;
 	private LocalDate caducidadDebito;
+	private LocalDate fechaCaducidad; // Revisar si es necesario
 
 	public Debito(String numero, String titular, String cvc, CuentaAhorro cuentaAsociada) { // CCog = 0, WMC = 1
 		super(numero, titular, cvc, cuentaAsociada);
@@ -16,16 +17,16 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 11 = 0,18, WMC = 
 
 	@Override
 	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 2
-		confirmaCantidadNegativa(x);
-		confirmaCreditoOSaldo(x, saldoDiarioDisponible, "Saldo insuficiente");
+		ValidacionCantidades.confirmaCantidadNegativa(x);
+		ValidacionCantidades.confirmaCreditoOSaldo(x, saldoDiarioDisponible, "Saldo insuficiente");
 		this.cuentaAsociada.retirar("Retirada en cajero", x);
 		saldoDiarioDisponible -= x ;
 	}
 	
 	@Override
 	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 2
-		confirmaCantidadNegativa(x);
-		confirmaCreditoOSaldo(x, saldoDiarioDisponible, "Saldo insuficiente");
+		ValidacionCantidades.confirmaCantidadNegativa(x);
+		ValidacionCantidades.confirmaCreditoOSaldo(x, saldoDiarioDisponible, "Saldo insuficiente");
 		
 		this.cuentaAsociada.retirar("Compra en : " + datos, x);
 		saldoDiarioDisponible -= x;
@@ -33,7 +34,7 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 11 = 0,18, WMC = 
 
 	@Override
 	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1
-		this.fechaCaducidad = cuentaAsociada.getCaducidadDebito();
+		this.fechaCaducidad = caducidadDebito;
 	}
 	
 	public LocalDate getCaducidadDebito() { // CCog = 0, WMC = 1
@@ -45,7 +46,7 @@ public class Debito extends Tarjeta { // CCog = 2, CCogn = 2 / 11 = 0,18, WMC = 
 	}
 
 	public double getLimiteDebito() { // CCog = 0, WMC = 1
-		return limiteDebito;
+		return limite;
 	}
 	
 	// Mover de cuenta
