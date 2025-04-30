@@ -56,8 +56,6 @@ public class CuentaAhorro extends Cuenta { // CCog = 3, CCogn = 3 / 10 = 0,3, WM
 		return saldo;
 	}
 
-	// TODO: revisar metodos y considerar si quitarlos o no, considerar si sacar TODOS los throws a una clase aparte
-
 
 	public void addMovimiento(Movimiento m) { // CCog = 0, WMC = 1
 		Movimientos.add(m); // Cambiar nombre

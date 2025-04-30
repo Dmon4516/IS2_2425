@@ -80,8 +80,6 @@ public class Credito extends Tarjeta { // CCog = 5, CCogn = 5 / 13 = 0,38, WMC =
 		movimientosMensuales.clear();
 	}
 
-	// TODO: considerar repartir funcionalidades en diferentes clases (creando clases nuevas) y mover TODOS los throws a otra clase
-
 	@Override
 	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1
 		this.fechaCaducidad = caducidadCredito;
