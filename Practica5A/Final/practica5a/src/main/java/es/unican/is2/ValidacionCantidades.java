@@ -1,6 +1,6 @@
 package es.unican.is2;
 
-public class ValidacionCantidades {
+public class ValidacionCantidades { // CCog = 2, CCogn = 2 / 2 = 1, WMC = 4, WMCn = 4 / 2 = 2
     
     public static void confirmaCantidadNegativa(double x) throws datoErroneoException { // CCog = 1, WMC = 2
         if (x <= 0) { // CCog + 1, WMC + 1

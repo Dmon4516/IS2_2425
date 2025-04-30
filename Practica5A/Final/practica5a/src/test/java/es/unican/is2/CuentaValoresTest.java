@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.beans.Transient;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,5 +40,18 @@ public class CuentaValoresTest {
 		// CASOS NO VALIDOS
 		assertFalse(sut.anhadeValor(new Valor("Telepizza", 10, 2.5)));
 		
+	}
+
+	@Test
+	public void testCalcularSaldo() {
+		// CASO VACIO
+		assertTrue(sut.calculaSaldo() == 0);
+
+		// CASO VALIDO
+		Valor v = new Valor("Telepizza", 25, 1.05);
+		sut.anhadeValor(v);
+		assertTrue(sut.calculaSaldo() == 26.25);
+		
+	
 	}
 }

@@ -3,21 +3,21 @@ package es.unican.is2;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Cliente {
+public class Cliente { // CCog = 1, CCogn = 1 / 11 = 0,09, WMC = 11, WMCn = 11 / 11 = 1
 	
-	public String nombre;
-	public String calle;
-	public String zip;
-	public String localidad;
-	public String telefono;
-	public String dni;
+	// Cambio a private
+	private String nombre;
+	private String calle;
+	private String zip;
+	private String localidad;
+	private String telefono;
+	private String dni;
 	
-    private List<Cuenta> Cuentas = new LinkedList<Cuenta>();
-    
-    private List<Tarjeta> tarjetas = new LinkedList<Tarjeta>();
+    private List<Cuenta> cuentas = new LinkedList<Cuenta>();
+    private List<Tarjeta> tarjetas = new LinkedList<Tarjeta>(); // Estandarizador nombre
 
  	public Cliente(String titular, String calle, String zip, String localidad, 
- 			String telefono, String dni) {  
+ 			String telefono, String dni) {  // CCog = 0, WMC = 1
 		this.nombre = titular;
 		this.calle = calle;
 		this.zip = zip;
@@ -26,65 +26,52 @@ public class Cliente {
 		this.dni = dni;
 	}
 	
-	public void cambiaDireccion(String calle, String zip, String localidad) {
+	public void cambiaDireccion(String calle, String zip, String localidad) { // CCog = 0, WMC = 1
 		this.calle = calle;
 		this.zip = zip;
 		this.localidad = localidad;
 	}
 	
-	public void anhadeCuenta(Cuenta c) {
-		Cuentas.add(c);
+	public void anhadeCuenta(Cuenta c) { // CCog = 0, WMC = 1
+		cuentas.add(c);
 	}
 	
-	public void anhadeTarjeta(Tarjeta t) {
+	public void anhadeTarjeta(Tarjeta t) { // CCog = 0, WMC = 1
 		tarjetas.add(t);
-		if (t instanceof Debito) {
-			Debito td = (Debito)t;
-			td.getCuentaAsociada().setCaducidadDebito(td.getCaducidadDebito());
-		} else {
-			Credito tc = (Credito) t;
-			tc.getCuentaAsociada().setCaducidadCredito(tc.getCaducidadCredito());
-		}
+		t.actualizaCaducidadCuenta();
 	}
 	
-	public double getSaldoTotal() {
+	// Revisar
+	public double getSaldoTotal() { // CCog = 1, WMC = 1
 		double total = 0.0;
-		for (Cuenta c: Cuentas) {  
-			if (c instanceof CuentaAhorro) {
-				total += ((CuentaAhorro) c).getSaldo();
-			} else if (c instanceof CuentaValores)  {
-				for (Valor v: ((CuentaValores) c).getValores()) {
-					total += v.getCotizacion()*v.getNumValores();
-				}
-			}
+		for (Cuenta c: cuentas) { // CCog + 1
+			total += c.calculaSaldo();
 		}
 		return total;
 	}
 	
-	public String getNombre() {
+	public String getNombre() { // CCog = 0, WMC = 1
 		return nombre;
 	}
 
-	public String getCalle() {
+	public String getCalle() { // CCog = 0, WMC = 1
 		return calle;
 	}
 
-	public String getZip() {
+	public String getZip() { // CCog = 0, WMC = 1
 		return zip;
 	}
 
-	public String getLocalidad() {
+	public String getLocalidad() { // CCog = 0, WMC = 1
 		return localidad;
 	}
 
-	public String getTelefono() {
+	public String getTelefono() { // CCog = 0, WMC = 1
 		return telefono;
 	}
 
-	public String getDni() {
+	public String getDni() { // CCog = 0, WMC = 1
 		return dni;
 	}
-	
-	
 	
 }

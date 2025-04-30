@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>es.unican.is2</groupId>
-    <artifactId>practica5a2</artifactId>
+    <artifactId>practica5a</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <name>Practica5A</name>
