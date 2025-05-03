@@ -1,0 +1,6 @@
+projectKey=es.unican.is2:practica5bRefactorizado
+serverUrl=http://localhost:9000
+serverVersion=25.4.0.105899
+dashboardUrl=http://localhost:9000/dashboard?id=es.unican.is2%3Apractica5bRefactorizado
+ceTaskId=beb2b0a9-6d0d-46db-a999-e84847cd3d81
+ceTaskUrl=http://localhost:9000/api/ce/task?id=beb2b0a9-6d0d-46db-a999-e84847cd3d81
