@@ -26,11 +26,11 @@ public class Credito extends Tarjeta { // CCog = 3, CCogn = 3 / 11 = 0,27, WMC =
 	/**
 	 * Retirada de dinero en cajero con la tarjeta
 	 * @param x Cantidad a retirar. Se aplica una comisi�n del 5%.
-	 * @throws saldoInsuficienteException
-	 * @throws datoErroneoException
+	 * @throws SaldoInsuficienteException
+	 * @throws DatoErroneoException
 	 */
 	@Override
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
+	public void retirar(double x) throws SaldoInsuficienteException, DatoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCantidadNegativa(x);
 		x += x * 0.05; // Comision por operacion con tarjetas credito
 		
@@ -41,7 +41,7 @@ public class Credito extends Tarjeta { // CCog = 3, CCogn = 3 / 11 = 0,27, WMC =
 	}
 
 	@Override
-	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
+	public void pagoEnEstablecimiento(String datos, double x) throws SaldoInsuficienteException, DatoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCantidadNegativa(x);
 		ValidacionCantidades.confirmaCreditoOSaldo(getGastosAcumulados() + x, cantidadCredito, "Saldo insuficiente");
 		// Revisar con cambios en movimiento

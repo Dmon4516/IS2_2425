@@ -40,6 +40,13 @@ public class Movimiento { // CCog = 1, CCogn = 1 / 8 = 0,12, WMC = 8, WMCn = 8 /
 	
 	@Override
 	public boolean equals(Object obj) { // CCog = 1, WMC = 1
+		if (obj == null) { // CCog + 1, WMC + 1
+			return false;
+		}
+		
+		if (this.getClass() != obj.getClass()) // CCog + 1, WMC + 1
+			return false;
+
 		Movimiento other = (Movimiento)obj;
 		return (concepto.equals(other.concepto) && fecha.equals(other.fecha) && importe==other.importe); // CCog + 1
 	}

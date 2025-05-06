@@ -5,7 +5,7 @@ package es.unican.is2;
  * Cada valor contiene un n�mero de acciones 
  * de una de las entidades del IBEX 35
  */
-public class Valor { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 7, WMCn = 7 / 7 = 1
+public class Valor { // CCog = 3, CCogn = 3 / 7 = 0,42, WMC = 9, WMCn = 9 / 7 = 1,28
 	
 	private String entidad;	
 	private int numAcciones;
@@ -38,14 +38,17 @@ public class Valor { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 7, WMCn = 7 / 7 = 
 	}
 	
 	@Override
-	public boolean equals(Object obj) { // CCog = 1, WMC = 1
+	public boolean equals(Object obj) { // CCog = 3, WMC = 3
+
+		if (obj == null) { // CCog + 1, WMC + 1
+			return false;
+		}
 		
-		if (this.getClass() != obj.getClass()) // CCog + 1
+		if (this.getClass() != obj.getClass()) // CCog + 1, WMC + 1
 			return false;
 
 		Valor other = (Valor)obj;
 		return (entidad.equals(other.entidad) && numAcciones==other.numAcciones); // CCog + 1
-
 	}
 	
 }

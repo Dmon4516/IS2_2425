@@ -11,21 +11,21 @@ class ValidacionCantidadesTest {
         try {
             ValidacionCantidades.confirmaCantidadNegativa(-1);
             assertTrue(false);
-        } catch (datoErroneoException e) {
+        } catch (DatoErroneoException e) {
             assertTrue(true);
         }
         
         try {
             ValidacionCantidades.confirmaCantidadNegativa(0);
             assertTrue(false);
-        } catch (datoErroneoException e) {
+        } catch (DatoErroneoException e) {
             assertTrue(true);
         }
         
         try {
             ValidacionCantidades.confirmaCantidadNegativa(1);
             assertTrue(true);
-        } catch (datoErroneoException e) {
+        } catch (DatoErroneoException e) {
             assertTrue(false);
         }
         
@@ -36,21 +36,21 @@ class ValidacionCantidadesTest {
         try {
             ValidacionCantidades.confirmaCreditoOSaldo(1, 0, "No hay saldo suficiente");
             assertTrue(false);
-        } catch (saldoInsuficienteException e) {
+        } catch (SaldoInsuficienteException e) {
             assertTrue(true);
         }
         
         try {
             ValidacionCantidades.confirmaCreditoOSaldo(1, 1, "No hay saldo suficiente");
             assertTrue(true);
-        } catch (saldoInsuficienteException e) {
+        } catch (SaldoInsuficienteException e) {
             assertTrue(false);
         }
         
         try {
             ValidacionCantidades.confirmaCreditoOSaldo(1, 2, "No hay saldo suficiente");
             assertTrue(true);
-        } catch (saldoInsuficienteException e) {
+        } catch (SaldoInsuficienteException e) {
             assertTrue(false);
         }
     }

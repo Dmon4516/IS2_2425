@@ -18,20 +18,20 @@ public abstract class Tarjeta { // CCog = 0, CCogn = 0 / 1 = 0, WMC = 1, WMCn = 
 	/**
 	 * Retirada de dinero en cajero con la tarjeta
 	 * @param x Cantidad a retirar. 
-	 * @throws saldoInsuficienteException
-	 * @throws datoErroneoException
+	 * @throws SaldoInsuficienteException
+	 * @throws DatoErroneoException
 	 */
-	public abstract void retirar(double x) throws saldoInsuficienteException, datoErroneoException;
+	public abstract void retirar(double x) throws SaldoInsuficienteException, DatoErroneoException;
 
 	/**
 	 * Pago en establecimiento con la tarjeta
 	 * @param datos Concepto del pago
 	 * @param x Cantidada a pagar
-	 * @throws saldoInsuficienteException
-	 * @throws datoErroneoException
+	 * @throws SaldoInsuficienteException
+	 * @throws DatoErroneoException
 	 */
 	public abstract void pagoEnEstablecimiento(String datos, double x)
-			throws saldoInsuficienteException, datoErroneoException;
+			throws SaldoInsuficienteException, DatoErroneoException;
 
 	
 }

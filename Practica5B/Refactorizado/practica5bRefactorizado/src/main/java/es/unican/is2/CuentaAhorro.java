@@ -11,19 +11,19 @@ public class CuentaAhorro extends Cuenta { // CCog = 1, CCogn = 1 / 8 = 0,125, W
 	private String ingresoEfectivo = "Ingreso en efectivo";
 	private String retiradaEfectivo = "Retirada de efectivo";
 
-	public CuentaAhorro(String numCuenta)  throws datoErroneoException { // CCog = 0, WMC = 1
+	public CuentaAhorro(String numCuenta)  throws DatoErroneoException { // CCog = 0, WMC = 1
 		super(numCuenta);
 		movimientos = new LinkedList<>();
 	}
 
-	public void ingresar(double x) throws datoErroneoException { // CCog = 0, WMC = 1
+	public void ingresar(double x) throws DatoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCantidadNegativa(x); 
 		// Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
 		Movimiento m = new Movimiento(ingresoEfectivo, LocalDateTime.now(), x);
 		this.movimientos.add(m); 
 	}
 
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
+	public void retirar(double x) throws SaldoInsuficienteException, DatoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCreditoOSaldo(x ,calculaSaldo(), "Saldo insuficiente");
 		ValidacionCantidades.confirmaCantidadNegativa(x);
 		Movimiento m = new Movimiento(retiradaEfectivo, LocalDateTime.now(), -x); // Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
@@ -31,13 +31,13 @@ public class CuentaAhorro extends Cuenta { // CCog = 1, CCogn = 1 / 8 = 0,125, W
 		this.movimientos.add(m);
 	}
 
-	public void ingresar(String concepto, double x) throws datoErroneoException { // CCog = 0, WMC = 1
+	public void ingresar(String concepto, double x) throws DatoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCantidadNegativa(x);
 		Movimiento m = new Movimiento(concepto, LocalDateTime.now(), x); // Cambiar nombre de funciones y argumentos. Mejor cambiar la clase movimiento
 		this.movimientos.add(m);
 	}
 
-	public void retirar(String concepto, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
+	public void retirar(String concepto, double x) throws SaldoInsuficienteException, DatoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCreditoOSaldo(x, calculaSaldo(), "Saldo insuficiente");
 		ValidacionCantidades.confirmaCantidadNegativa(x);
 		

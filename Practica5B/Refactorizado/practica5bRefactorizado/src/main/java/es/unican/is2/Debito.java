@@ -16,7 +16,7 @@ public class Debito extends Tarjeta { // CCog = 0, CCogn = 0 / 9 = 0, WMC = 9, W
 	}
 
 	@Override
-	public void retirar(double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
+	public void retirar(double x) throws SaldoInsuficienteException, DatoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCantidadNegativa(x);
 		ValidacionCantidades.confirmaCreditoOSaldo(x, saldoDiarioDisponible, "Saldo insuficiente");
 		this.cuentaAsociada.retirar("Retirada en cajero", x);
@@ -24,7 +24,7 @@ public class Debito extends Tarjeta { // CCog = 0, CCogn = 0 / 9 = 0, WMC = 9, W
 	}
 	
 	@Override
-	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
+	public void pagoEnEstablecimiento(String datos, double x) throws SaldoInsuficienteException, DatoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCantidadNegativa(x);
 		ValidacionCantidades.confirmaCreditoOSaldo(x, saldoDiarioDisponible, "Saldo insuficiente");
 		
