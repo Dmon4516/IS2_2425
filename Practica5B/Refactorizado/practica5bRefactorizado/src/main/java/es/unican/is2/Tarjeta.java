@@ -2,10 +2,12 @@ package es.unican.is2;
 
 public abstract class Tarjeta { // CCog = 0, CCogn = 0 / 1 = 0, WMC = 1, WMCn = 1 / 1 = 1
 	
-	protected String numero, titular, cvc;		
+	protected String numero;
+	protected String titular;
+	protected String cvc;		
 	protected CuentaAhorro cuentaAsociada;
 
-	public Tarjeta(String numero, String titular, String cvc,
+	protected Tarjeta(String numero, String titular, String cvc,
 			CuentaAhorro cuentaAsociada) { // CCog = 0, WMC = 1
 		this.numero = numero;
 		this.titular = titular;

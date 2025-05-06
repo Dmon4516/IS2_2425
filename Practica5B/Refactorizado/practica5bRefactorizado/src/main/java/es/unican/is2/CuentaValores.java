@@ -9,7 +9,7 @@ public class CuentaValores extends Cuenta { // CCog = 4, CCogn = 4 / 4 = 1, WMC 
 	
 	public CuentaValores(String numCuenta) { // CCog = 0, WMC = 1
 		super(numCuenta);
-		valores = new LinkedList<Valor>();
+		valores = new LinkedList<>();
 	}
 	
 	public List<Valor> getValores() { // CCog = 0, WMC = 1

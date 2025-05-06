@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class ValidacionCantidadesTest {
+class ValidacionCantidadesTest {
     
     @Test
-    public void testConfirmaCantidadNegativa() {
+    void testConfirmaCantidadNegativa() {
         try {
             ValidacionCantidades.confirmaCantidadNegativa(-1);
             assertTrue(false);
@@ -32,7 +32,7 @@ public class ValidacionCantidadesTest {
     }
 
     @Test
-    public void testConfirmaCreditoOSaldo() {
+    void testConfirmaCreditoOSaldo() {
         try {
             ValidacionCantidades.confirmaCreditoOSaldo(1, 0, "No hay saldo suficiente");
             assertTrue(false);

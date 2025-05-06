@@ -39,6 +39,10 @@ public class Valor { // CCog = 1, CCogn = 1 / 7 = 0,14, WMC = 7, WMCn = 7 / 7 = 
 	
 	@Override
 	public boolean equals(Object obj) { // CCog = 1, WMC = 1
+		
+		if (this.getClass() != obj.getClass()) // CCog + 1
+			return false;
+
 		Valor other = (Valor)obj;
 		return (entidad.equals(other.entidad) && numAcciones==other.numAcciones); // CCog + 1
 
