@@ -1,0 +1,4 @@
+{
+    "sonarQubeUri": "http://localhost:9000",
+    "projectKey": "es.unican.is2:practica5bRefactorizado"
+}

@@ -7,7 +7,7 @@ public class Debito extends Tarjeta { // CCog = 0, CCogn = 0 / 9 = 0, WMC = 9, W
 	private double limite;
 	private double saldoDiarioDisponible;
 	private LocalDate caducidadDebito;
-	private LocalDate fechaCaducidad;
+
 
 	public Debito(String numero, String titular, String cvc, CuentaAhorro cuentaAsociada) { // CCog = 0, WMC = 1
 		super(numero, titular, cvc, cuentaAsociada);
@@ -30,11 +30,6 @@ public class Debito extends Tarjeta { // CCog = 0, CCogn = 0 / 9 = 0, WMC = 9, W
 		
 		this.cuentaAsociada.retirar("Compra en : " + datos, x);
 		saldoDiarioDisponible -= x;
-	}
-
-	@Override
-	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1
-		this.fechaCaducidad = caducidadDebito;
 	}
 	
 	public LocalDate getCaducidadDebito() { // CCog = 0, WMC = 1

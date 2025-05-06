@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Credito extends Tarjeta { // CCog = 3, CCogn = 3 / 11 = 0,27, WMC = 12, WMCn = 12 / 11 = 1,09
 	
-	private double credito;
+	private double cantidadCredito;
 	private List<Movimiento> movimientosMensuales;
 	private List<Movimiento> historicoMovimientos; // Estandarizador nombre
 
@@ -16,12 +16,11 @@ public class Credito extends Tarjeta { // CCog = 3, CCogn = 3 / 11 = 0,27, WMC =
 	private String liquidacion = "Liquidacion de operaciones tarjeta credito";
 
 	private LocalDate caducidadCredito;
-	private LocalDate fechaCaducidad;
 
 	public Credito(String numero, String titular, String cvc,
 			CuentaAhorro cuentaAsociada, double credito) { // CCog = 0, WMC = 1
 		super(numero, titular, cvc, cuentaAsociada);
-		this.credito = credito;
+		this.cantidadCredito = credito;
 	}
 
 	/**
@@ -35,7 +34,7 @@ public class Credito extends Tarjeta { // CCog = 3, CCogn = 3 / 11 = 0,27, WMC =
 		ValidacionCantidades.confirmaCantidadNegativa(x);
 		x += x * 0.05; // Comision por operacion con tarjetas credito
 		
-		ValidacionCantidades.confirmaCreditoOSaldo(getGastosAcumulados() + x, credito, "Credito insuficiente");
+		ValidacionCantidades.confirmaCreditoOSaldo(getGastosAcumulados() + x, cantidadCredito, "Credito insuficiente");
 		
 		Movimiento m = new Movimiento(retiro, LocalDateTime.now(), -x);
 		movimientosMensuales.add(m); 
@@ -44,7 +43,7 @@ public class Credito extends Tarjeta { // CCog = 3, CCogn = 3 / 11 = 0,27, WMC =
 	@Override
 	public void pagoEnEstablecimiento(String datos, double x) throws saldoInsuficienteException, datoErroneoException { // CCog = 0, WMC = 1
 		ValidacionCantidades.confirmaCantidadNegativa(x);
-		ValidacionCantidades.confirmaCreditoOSaldo(getGastosAcumulados() + x, credito, "Saldo insuficiente");
+		ValidacionCantidades.confirmaCreditoOSaldo(getGastosAcumulados() + x, cantidadCredito, "Saldo insuficiente");
 		// Revisar con cambios en movimiento
 		Movimiento m = new Movimiento(compra + datos, LocalDateTime.now(), -x); // Estandarizador nombre
 		movimientosMensuales.add(m);
@@ -66,7 +65,7 @@ public class Credito extends Tarjeta { // CCog = 3, CCogn = 3 / 11 = 0,27, WMC =
 		
 		double gastos = 0.0; 
 		for (int i = 0; i < this.movimientosMensuales.size(); i++) { // CCog + 1
-			Movimiento m = (Movimiento) movimientosMensuales.get(i); 
+			Movimiento m = movimientosMensuales.get(i); 
 			gastos += m.getImporte();
 		}
 
@@ -79,10 +78,6 @@ public class Credito extends Tarjeta { // CCog = 3, CCogn = 3 / 11 = 0,27, WMC =
 		movimientosMensuales.clear();
 	}
 
-	@Override
-	public void actualizaCaducidadCuenta() { // CCog = 0, WMC = 1
-		this.fechaCaducidad = caducidadCredito;
-	}
 
 	public void setCaducidadCredito(LocalDate caducidadCredito) { // CCog = 0, WMC = 1
 		this.caducidadCredito = caducidadCredito;

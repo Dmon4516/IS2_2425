@@ -1,11 +1,9 @@
 package es.unican.is2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -14,14 +12,14 @@ import org.junit.jupiter.api.Test;
 
 
 
-public class CuentaAhorroTest {
+class CuentaAhorroTest {
 	private CuentaAhorro sut;
 	private static Movimiento m1, m2, m3;
 
 	
 	
 	@BeforeAll
-	public static void inicializaAuxiliares() {
+	static void inicializaAuxiliares() {
 
 		m1 = new Movimiento("Concepto1", LocalDateTime.now(), 100);
 		m2 = new Movimiento("Concepto2", LocalDateTime.now(), 200);
@@ -29,12 +27,12 @@ public class CuentaAhorroTest {
 	}
 
 	@BeforeEach
-	public void inicializa() {
+	void inicializa() {
 		sut = new CuentaAhorro("794311");
 	}
 
 	@Test
-	public void testConstructor() {
+	void testConstructor() {
 		// Se elimina el getLimiteCredito ya que se ha movido a la clase debito 
 		assertEquals(sut.getMovimientos().size(), 0);
 		assertEquals(sut.getNumCuenta(), "794311");
@@ -42,10 +40,10 @@ public class CuentaAhorroTest {
 		// Se eliminan getCaducidad ya que se han movido a las clases debito y credito	
 	}
 	
-	// Se eliminan los test de getCaducidadCredito y getCaducidadDebito ya que se han movido a las clases debito y credito
+		// Se eliminan los test de getCaducidadCredito y getCaducidadDebito ya que se han movido a las clases debito y credito
 	
 	@Test
-	public void testCalculaSaldoYAddMovimiento() {
+	void testCalculaSaldoYAddMovimiento() {
 
 		assertTrue(sut.calculaSaldo()==0);	
 
@@ -61,7 +59,7 @@ public class CuentaAhorroTest {
 	}
 	
 	@Test
-	public void testRetirarSinConcepto() {
+	void testRetirarSinConcepto() {
 		
 		try {
 			sut.retirar(-10);
@@ -95,7 +93,7 @@ public class CuentaAhorroTest {
 	}
 	
 	@Test
-	public void testIngresarSinConcepto () {
+	void testIngresarSinConcepto () {
 	
 		try {
 			sut.ingresar(-1);
@@ -121,7 +119,7 @@ public class CuentaAhorroTest {
 	
 	
 	@Test
-	public void testIngresarConConcepto () {
+	void testIngresarConConcepto () {
 	
 		// Test ingresar negativo
 		try {
@@ -149,7 +147,7 @@ public class CuentaAhorroTest {
 	}
 	
 	@Test
-	public void testRetirarConConcepto() {
+	void testRetirarConConcepto() {
 		
 		try {
 			sut.retirar("Retirada", -10);

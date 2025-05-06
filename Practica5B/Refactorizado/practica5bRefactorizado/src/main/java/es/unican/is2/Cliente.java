@@ -13,8 +13,8 @@ public class Cliente { // CCog = 1, CCogn = 1 / 11 = 0,09, WMC = 11, WMCn = 11 /
 	private String telefono;
 	private String dni;
 	
-    private List<Cuenta> cuentas = new LinkedList<Cuenta>();
-    private List<Tarjeta> tarjetas = new LinkedList<Tarjeta>(); // Estandarizador nombre
+    private List<Cuenta> cuentas = new LinkedList<>();
+    private List<Tarjeta> tarjetas = new LinkedList<>(); // Estandarizador nombre
 
  	public Cliente(String titular, String calle, String zip, String localidad, 
  			String telefono, String dni) {  // CCog = 0, WMC = 1
@@ -38,7 +38,7 @@ public class Cliente { // CCog = 1, CCogn = 1 / 11 = 0,09, WMC = 11, WMCn = 11 /
 	
 	public void anhadeTarjeta(Tarjeta t) { // CCog = 0, WMC = 1
 		tarjetas.add(t);
-		t.actualizaCaducidadCuenta();
+		// Se elimina porque no se usa de forma directa
 	}
 	
 	// Revisar

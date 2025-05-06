@@ -31,7 +31,5 @@ public abstract class Tarjeta { // CCog = 0, CCogn = 0 / 1 = 0, WMC = 1, WMCn = 
 	public abstract void pagoEnEstablecimiento(String datos, double x)
 			throws saldoInsuficienteException, datoErroneoException;
 
-
-	public abstract void actualizaCaducidadCuenta();
 	
 }
